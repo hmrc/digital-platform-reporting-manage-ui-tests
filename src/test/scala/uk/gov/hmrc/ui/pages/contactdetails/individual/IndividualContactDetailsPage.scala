@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactdetails
+package uk.gov.hmrc.ui.pages.contactdetails.individual
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 
-case class ContactDetailsPage() extends BasePage("/contact-details/view-contact-details") {
+case class IndividualContactDetailsPage() extends BasePage("/contact-details/view-contact-details") {
 
-  def clickChangeEmail(): ContactDetailsPage =
+  def clickChangeEmail(): IndividualContactDetailsPage =
     click("div.govuk-summary-list__row:nth-child(1) > dd:nth-child(3) > a:nth-child(1)")
 
-  def clickChangeCanWeContactYouByPhone(): ContactDetailsPage =
+  def clickChangeCanWeContactYouByPhone(): IndividualContactDetailsPage =
     click("div.govuk-summary-list__row:nth-child(2) > dd:nth-child(3) > a:nth-child(1)")
 
-  private def click(cssSelector: String): ContactDetailsPage = {
+  private def click(cssSelector: String): IndividualContactDetailsPage = {
     assertUrl(url)
     click(By.cssSelector(cssSelector))
     this

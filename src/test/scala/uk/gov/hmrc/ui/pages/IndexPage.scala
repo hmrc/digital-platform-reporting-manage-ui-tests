@@ -21,7 +21,7 @@ import org.openqa.selenium.By
 case class IndexPage() extends BasePage("/manage-reporting") {
 
   private val changeLink =
-    "div.card:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)"
+    "div.card:nth-child(3) > div:nth-child(2) > p:nth-child(1) > a:nth-child(1)"
 
   def clickChangeContactDetails(): IndexPage = {
     assertUrl(url)

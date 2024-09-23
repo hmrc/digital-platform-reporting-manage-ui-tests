@@ -18,7 +18,6 @@ package uk.gov.hmrc.ui.specs.contactdetails
 
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.anIndividualUser
-import uk.gov.hmrc.ui.pages.contactdetails.ContactDetailsPage
 import uk.gov.hmrc.ui.pages.contactdetails.individual._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
@@ -26,7 +25,7 @@ class IndividualJourneysSpec extends BaseSpec {
 
   private val loginPage                         = AuthLoginStubPage
   private val indexPage                         = IndexPage()
-  private val contactDetailsPage                = ContactDetailsPage()
+  private val individualContactDetailsPage      = IndividualContactDetailsPage()
   private val individualEmailAddressPage        = IndividualEmailAddressPage()
   private val individualEmailAddressUpdatedPage = IndividualEmailAddressUpdatedPage()
   private val canPhoneIndividualPage            = CanPhoneIndividualPage()
@@ -45,21 +44,21 @@ class IndividualJourneysSpec extends BaseSpec {
       indexPage.clickChangeContactDetails()
 
       And("Email address updated")
-      contactDetailsPage.clickChangeEmail()
+      individualContactDetailsPage.clickChangeEmail()
       individualEmailAddressPage.withEmail("marjorie.simpson.1@example.com").continue()
       individualEmailAddressUpdatedPage.continue()
 
       And("Can we contact you by telephone and phone number are updated")
-      contactDetailsPage.clickChangeCanWeContactYouByPhone()
+      individualContactDetailsPage.clickChangeCanWeContactYouByPhone()
       canPhoneIndividualPage.selectNo().continue()
       individualPhoneNumberRemovedPage.continue()
-      contactDetailsPage.clickChangeCanWeContactYouByPhone()
+      individualContactDetailsPage.clickChangeCanWeContactYouByPhone()
       canPhoneIndividualPage.selectYes().continue()
       individualPhoneNumberPage.withPhoneNumber("0200000002").continue()
       individualPhoneNumberUpdatedPage.continue()
 
       And("Your contact details 'Back' is clicked")
-      contactDetailsPage.continue()
+      individualContactDetailsPage.continue()
 
       Then("The result page should be 'Manage your Digital Platform Reporting'")
       resultPage.url       should include("/manage-reporting")
