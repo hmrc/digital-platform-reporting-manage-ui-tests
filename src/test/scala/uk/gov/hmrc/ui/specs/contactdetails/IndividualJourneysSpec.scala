@@ -45,7 +45,7 @@ class IndividualJourneysSpec extends BaseSpec {
 
       And("Email address updated")
       individualContactDetailsPage.clickChangeEmail()
-      individualEmailAddressPage.withEmail("marjorie.simpson.1@example.com").continue()
+      individualEmailAddressPage.withEmail("marjorie.simpson.updated@example.com").continue()
       individualEmailAddressUpdatedPage.continue()
 
       And("Can we contact you by telephone and phone number are updated")
