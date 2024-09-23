@@ -16,6 +16,32 @@
 
 package uk.gov.hmrc.ui.pages
 
+import org.openqa.selenium.By
+import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.component.PageObject
 
-trait BasePage extends PageObject {}
+abstract class BasePage(relativeUrl: String) extends PageObject {
+
+  protected val baseUrl: String = TestEnvironment.url("digital-platform-reporting")
+  protected def url: String     = baseUrl + relativeUrl
+
+  def continue(): Unit = {
+    assertUrl(url)
+    click(By.cssSelector(".govuk-button"))
+  }
+
+  protected def selectOption(index: Int): Unit =
+    click(By.cssSelector(s"#value_$index"))
+
+  protected def selectRadioOption(index: Int): BasePage = {
+    assertUrl(url)
+    selectOption(index)
+    this
+  }
+
+  protected def selectYesNoOption(value: Boolean): Unit =
+    if (value) click(By.cssSelector("#value")) else click(By.cssSelector("#value-no"))
+
+  protected def assertUrl(url: String): Unit =
+    assert(getCurrentUrl == url, s"Url was: $getCurrentUrl, but expected is $url")
+}

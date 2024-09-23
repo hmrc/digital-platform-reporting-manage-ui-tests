@@ -17,19 +17,28 @@ docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.
 Start `<SERVICE_MANAGER_PROFILE>` services as follows:
 
 ```bash
-sm2 --start <SERVICE_MANAGER_PROFILE>
+sm2 --start DPRS_ALL
 ```
 
 ## Tests
 
 Run tests as follows:
 
-* Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
 * Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
+* Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
+* Argument `<headless>` must be `true` or `false`.
 
 ```bash
-sbt clean -Dbrowser="<browser>" -Denvironment="<environment>" test testReport
+sbt clean -Denvironment="<environment>" -Dbrowser="<browser>" --Dbrowser.option.headless="<headless>" "testOnly uk.gov.hmrc.ui.specs.*" testReport
 ```
+
+Alternatively you can use:
+```bash
+./run_tests.sh dev firefox true
+```
+
+The above command has default values and if no parameters are passed the default values are: local, chrome and false.
+
 
 ## Scalafmt
 
