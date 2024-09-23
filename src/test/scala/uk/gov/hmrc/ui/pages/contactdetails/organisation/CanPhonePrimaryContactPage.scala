@@ -20,5 +20,5 @@ import support.helpers.YesNoRadioGroup
 import uk.gov.hmrc.ui.pages.BasePage
 
 case class CanPhonePrimaryContactPage()
-  extends BasePage("/contact-details/change-first-contact/can-we-telephone")
+    extends BasePage("/contact-details/change-first-contact/can-we-telephone")
     with YesNoRadioGroup
