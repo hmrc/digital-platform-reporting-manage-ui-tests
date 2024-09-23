@@ -57,7 +57,7 @@ class IndividualJourneysSpec extends BaseSpec {
       individualPhoneNumberPage.withPhoneNumber("0200000002").continue()
       individualPhoneNumberUpdatedPage.continue()
 
-      And("Your contact details 'Back' is clicked")
+      And("Your contact details 'Back' button is clicked")
       individualContactDetailsPage.continue()
 
       Then("The result page should be 'Manage your Digital Platform Reporting'")
