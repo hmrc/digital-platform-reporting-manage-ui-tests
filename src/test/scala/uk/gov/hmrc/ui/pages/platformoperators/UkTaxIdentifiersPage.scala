@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactdetails.organisation
+package uk.gov.hmrc.ui.pages.platformoperators
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.ManageBasePage
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class PrimaryContactEmailAddressPage() extends ManageBasePage("/contact-details/change-first-contact/email") {
+case class UkTaxIdentifiersPage() extends OperatorBasePage("/platform-operator/add-platform-operator/uk-tin-type") {
 
-  def withEmail(email: String): PrimaryContactEmailAddressPage = {
-    assertUrl(url)
-    sendKeys(By.cssSelector("#value"), email)
-    this
-  }
+  def selectUniqueTaxPayerReference(): Unit = click(By.cssSelector("#value_0"))
+
+  def selectCompanyRegistrationNumber(): Unit = click(By.cssSelector("#value_1"))
+
+  def selectVatRegistrationNumber(): Unit = click(By.cssSelector("#value_2"))
+
+  def selectEmployerPAYEReferenceNumber(): Unit = click(By.cssSelector("#value_3"))
+
+  def selectHmrcCharityReference(): Unit = click(By.cssSelector("#value_4"))
 }

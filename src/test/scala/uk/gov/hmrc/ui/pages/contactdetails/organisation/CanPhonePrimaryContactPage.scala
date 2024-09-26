@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.pages.contactdetails.organisation
 
 import support.helpers.YesNoRadioGroup
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
 case class CanPhonePrimaryContactPage()
-    extends BasePage("/contact-details/change-first-contact/can-we-telephone")
+    extends ManageBasePage("/contact-details/change-first-contact/can-we-telephone")
     with YesNoRadioGroup

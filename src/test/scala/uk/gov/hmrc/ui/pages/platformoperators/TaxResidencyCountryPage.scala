@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactdetails.organisation
+package uk.gov.hmrc.ui.pages.platformoperators
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.ManageBasePage
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class PrimaryContactEmailAddressPage() extends ManageBasePage("/contact-details/change-first-contact/email") {
+case class TaxResidencyCountryPage()
+    extends OperatorBasePage("/platform-operator/add-platform-operator/tax-resident-country") {
 
-  def withEmail(email: String): PrimaryContactEmailAddressPage = {
+  def withCountry(country: String): TaxResidencyCountryPage = {
     assertUrl(url)
-    sendKeys(By.cssSelector("#value"), email)
+    sendKeys(By.cssSelector("#value"), country)
+    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
     this
   }
 }

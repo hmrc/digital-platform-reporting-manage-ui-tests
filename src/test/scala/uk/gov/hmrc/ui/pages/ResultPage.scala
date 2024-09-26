@@ -18,7 +18,7 @@ package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
 
-object ResultPage extends BasePage("") {
+object ResultPage extends ManageBasePage("") {
 
   private val headingSelector = By.cssSelector("h1")
 

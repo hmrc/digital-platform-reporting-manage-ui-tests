@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactdetails.organisation
+package uk.gov.hmrc.ui.pages.platformoperators
 
-import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.ManageBasePage
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class PrimaryContactEmailAddressPage() extends ManageBasePage("/contact-details/change-first-contact/email") {
+case class PlatformOperatorAddedPage()
+    extends OperatorBasePage("/platform-operator/add-platform-operator/added-successfully") {
 
-  def withEmail(email: String): PrimaryContactEmailAddressPage = {
-    assertUrl(url)
-    sendKeys(By.cssSelector("#value"), email)
-    this
-  }
+  private val manageLinkCssSelector = "p.govuk-body:nth-child(6) > a:nth-child(1)"
+  private val addLinkCssSelector    = "p.govuk-body:nth-child(7) > a:nth-child(1)"
+
+  def clickManageYourDigitalPlatformReporting(): Unit = click(manageLinkCssSelector)
+
+  def clickAddAnotherPlatformOperator(): Unit = click(addLinkCssSelector)
 }

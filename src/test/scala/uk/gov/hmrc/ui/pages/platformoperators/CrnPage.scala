@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.contactdetails.organisation
+package uk.gov.hmrc.ui.pages.platformoperators
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.ManageBasePage
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class PrimaryContactEmailAddressPage() extends ManageBasePage("/contact-details/change-first-contact/email") {
+case class CrnPage() extends OperatorBasePage("/platform-operator/add-platform-operator/crn") {
 
-  def withEmail(email: String): PrimaryContactEmailAddressPage = {
+  def withCompanyRegistrationNumber(crn: String): CrnPage = {
     assertUrl(url)
-    sendKeys(By.cssSelector("#value"), email)
+    sendKeys(By.cssSelector("#value"), crn)
     this
   }
 }

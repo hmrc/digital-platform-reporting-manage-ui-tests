@@ -16,6 +16,6 @@
 
 package uk.gov.hmrc.ui.pages.contactdetails.organisation
 
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
-case class PrimaryContactUpdatedPage() extends BasePage("/contact-details/change-first-contact/success")
+case class PrimaryContactUpdatedPage() extends ManageBasePage("/contact-details/change-first-contact/success")

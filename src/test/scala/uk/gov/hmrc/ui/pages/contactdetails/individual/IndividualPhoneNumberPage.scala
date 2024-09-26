@@ -17,9 +17,9 @@
 package uk.gov.hmrc.ui.pages.contactdetails.individual
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
-case class IndividualPhoneNumberPage() extends BasePage("/contact-details/change-contact/telephone-number") {
+case class IndividualPhoneNumberPage() extends ManageBasePage("/contact-details/change-contact/telephone-number") {
 
   def withPhoneNumber(phoneNumber: String): IndividualPhoneNumberPage = {
     assertUrl(url)

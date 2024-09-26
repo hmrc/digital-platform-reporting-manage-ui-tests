@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.pages.contactdetails.individual
 
 import support.helpers.YesNoRadioGroup
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
 case class CanPhoneIndividualPage()
-    extends BasePage("/contact-details/change-contact/can-we-telephone")
+    extends ManageBasePage("/contact-details/change-contact/can-we-telephone")
     with YesNoRadioGroup
