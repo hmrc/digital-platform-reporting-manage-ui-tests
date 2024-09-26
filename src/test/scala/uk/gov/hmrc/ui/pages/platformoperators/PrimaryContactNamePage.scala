@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.models
+package uk.gov.hmrc.ui.pages.platformoperators
 
-case class UserCredentials(
-  affinityGroup: AffinityGroup,
-  credentialRole: CredentialRole,
-  enrolmentsData: EnrolmentsData
-)
+import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.OperatorBasePage
+
+case class PrimaryContactNamePage() extends OperatorBasePage("/platform-operator/add-platform-operator/contact-name") {
+
+  def withName(name: String): PrimaryContactNamePage = {
+    assertUrl(url)
+    sendKeys(By.cssSelector("#value"), name)
+    this
+  }
+}

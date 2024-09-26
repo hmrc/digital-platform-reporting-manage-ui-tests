@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.specs
 import support.BaseSpec
 import support.builders.EnrolmentsDataBuilder.anEnrolmentsData
 import support.builders.UserCredentialsBuilder.aUserCredentials
-import uk.gov.hmrc.ui.models.{Individual, Organisation, User}
+import support.models.auth.{Individual, Organisation, User}
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, ResultPage}
 
 class UserAuthenticationSpec extends BaseSpec {
@@ -35,9 +35,9 @@ class UserAuthenticationSpec extends BaseSpec {
       When("enters AffinityGroup = Organisation and CredentialRole = User")
       loginPage.loginAs(aUserCredentials.copy(affinityGroup = Organisation, credentialRole = User))
 
-      Then("The result page should be 'What are you registering for this service as?'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
     Scenario("User with Affinity Group of Individual and Credential Role of User") {
@@ -52,9 +52,9 @@ class UserAuthenticationSpec extends BaseSpec {
       )
       loginPage.loginAs(individualCredentials)
 
-      Then("The result page should be 'What are you registering for this service as?'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/digital-platform-reporting/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
   }
 }

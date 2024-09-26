@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.ui.pages.contactdetails.individual
 
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
 case class IndividualPhoneNumberRemovedPage()
-    extends BasePage("/contact-details/change-contact/telephone-number-removed")
+    extends ManageBasePage("/contact-details/change-contact/telephone-number-removed")

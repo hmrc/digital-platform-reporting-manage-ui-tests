@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.models
+package uk.gov.hmrc.ui.pages.platformoperators.organisation
 
-sealed trait AffinityGroup
+import support.helpers.YesNoRadioGroup
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case object Agent extends AffinityGroup
-case object Individual extends AffinityGroup
-case object Organisation extends AffinityGroup
+case class CanPhonePrimaryContactPage()
+    extends OperatorBasePage("/platform-operator/add-platform-operator/can-we-telephone")
+    with YesNoRadioGroup

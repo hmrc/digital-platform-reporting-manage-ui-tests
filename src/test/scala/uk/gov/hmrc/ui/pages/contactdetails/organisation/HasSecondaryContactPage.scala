@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.pages.contactdetails.organisation
 
 import support.helpers.YesNoRadioGroup
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
 case class HasSecondaryContactPage()
-    extends BasePage("/contact-details/change-second-contact/is-there-second-contact")
+    extends ManageBasePage("/contact-details/change-second-contact/is-there-second-contact")
     with YesNoRadioGroup

@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.specs.contactdetails
 
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.anIndividualUser
+import support.steps.SubscriptionSteps
 import uk.gov.hmrc.ui.pages.contactdetails.individual._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
@@ -36,16 +37,19 @@ class IndividualJourneysSpec extends BaseSpec {
 
   Feature("Individual Journeys") {
     Scenario("Change Contact Details") {
-      Given("Individual user logs in")
+      Given("Individual user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedIndividualEnrolment()
+
+      And("Individual user logs in")
       loginPage.show()
-      loginPage.loginAs(anIndividualUser)
+      loginPage.loginAs(anIndividualUser.copy(enrolmentsData = enrolmentsData))
 
       When("Change contact details is clicked")
       indexPage.clickChangeContactDetails()
 
       And("Email address updated")
       individualContactDetailsPage.clickChangeEmail()
-      individualEmailAddressPage.withEmail("marjorie.simpson.updated@example.com").continue()
+      individualEmailAddressPage.withEmail("rowan.bean.updated@example.com").continue()
       individualEmailAddressUpdatedPage.continue()
 
       And("Can we contact you by telephone and phone number are updated")
@@ -62,7 +66,7 @@ class IndividualJourneysSpec extends BaseSpec {
 
       Then("The result page should be 'Manage your Digital Platform Reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
   }
 }

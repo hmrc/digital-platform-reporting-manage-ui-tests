@@ -17,10 +17,10 @@
 package uk.gov.hmrc.ui.pages.contactdetails.organisation
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
 case class SecondaryContactPhoneNumberPage()
-    extends BasePage("/contact-details/change-second-contact/telephone-number") {
+    extends ManageBasePage("/contact-details/change-second-contact/telephone-number") {
 
   def withPhoneNumber(phoneNumber: String): SecondaryContactPhoneNumberPage = {
     assertUrl(url)

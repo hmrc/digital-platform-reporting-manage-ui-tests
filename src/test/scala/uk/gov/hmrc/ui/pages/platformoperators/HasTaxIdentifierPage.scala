@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.models
+package uk.gov.hmrc.ui.pages.platformoperators
 
-case class EnrolmentsData(enrolmentKey: String, identifierName: String, identifierValue: String)
+import support.helpers.YesNoRadioGroup
+import uk.gov.hmrc.ui.pages.OperatorBasePage
+
+case class HasTaxIdentifierPage()
+    extends OperatorBasePage("/platform-operator/add-platform-operator/have-tin")
+    with YesNoRadioGroup

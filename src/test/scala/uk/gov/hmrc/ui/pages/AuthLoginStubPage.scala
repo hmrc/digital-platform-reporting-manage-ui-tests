@@ -17,10 +17,10 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
+import support.models.auth.UserCredentials
 import uk.gov.hmrc.configuration.TestEnvironment
-import uk.gov.hmrc.ui.models.UserCredentials
 
-object AuthLoginStubPage extends BasePage("") {
+object AuthLoginStubPage extends ManageBasePage("") {
 
   private val title: String  = "Authority Wizard"
   private val redirectionUrl = s"$baseUrl/manage-reporting"
