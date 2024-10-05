@@ -35,7 +35,7 @@ class IndividualJourneysSpec extends BaseSpec {
   private val resultPage                        = ResultPage
 
   Feature("Individual Journeys") {
-    ignore("Change Contact Details") {
+    Scenario("Change Contact Details") {
       Given("Individual user logs in")
       loginPage.show()
       loginPage.loginAs(anIndividualUser)
