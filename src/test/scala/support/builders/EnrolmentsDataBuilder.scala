@@ -16,7 +16,7 @@
 
 package support.builders
 
-import uk.gov.hmrc.ui.models.EnrolmentsData
+import support.models.auth.EnrolmentsData
 
 object EnrolmentsDataBuilder {
 

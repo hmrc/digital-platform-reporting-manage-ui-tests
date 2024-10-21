@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.specs.contactdetails
 
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.anOrganisationUser
+import support.steps.SubscriptionSteps
 import uk.gov.hmrc.ui.pages.contactdetails.organisation._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
@@ -41,17 +42,20 @@ class OrganisationJourneysSpec extends BaseSpec {
 
   Feature("Organisation Journeys") {
     Scenario("Change Contact Details") {
-      Given("Organisation user logs in")
+      Given("Individual user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+
+      And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser)
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
 
       When("Change contact details is clicked")
       indexPage.clickChangeContactDetails()
 
       And("First contact details are updated")
       organisationContactDetailsPage.clickChangeFirstContact()
-      primaryContactNamePage.withName("KGF Corporation").continue()
-      primaryContactEmailAddressPage.withEmail("kgf.updated@example.com").continue()
+      primaryContactNamePage.withName("Marge Simpson").continue()
+      primaryContactEmailAddressPage.withEmail("marge.simpson.updated@example.com").continue()
       canPhonePrimaryContactPage.selectNo().continue()
       primaryContactUpdatedPage.continue()
       organisationContactDetailsPage.clickChangeFirstContact()
@@ -64,8 +68,8 @@ class OrganisationJourneysSpec extends BaseSpec {
       And("Second contact details are updated")
       organisationContactDetailsPage.clickChangeSecondContact()
       hasSecondaryContactPage.selectYes().continue()
-      secondaryContactNamePage.withName("TGIF Corporation").continue()
-      secondaryContactEmailAddressPage.withEmail("tgif.updated@example.com").continue()
+      secondaryContactNamePage.withName("Lisa Simpson").continue()
+      secondaryContactEmailAddressPage.withEmail("lisa.simpson.updated@example.com").continue()
       canPhoneSecondaryContactPage.selectYes().continue()
       secondaryContactPhoneNumberPage.withPhoneNumber("0202222333").continue()
       secondaryContactUpdatedPage.continue()
@@ -76,9 +80,9 @@ class OrganisationJourneysSpec extends BaseSpec {
       And("Your contact details 'Back' is clicked")
       organisationContactDetailsPage.continue()
 
-      Then("The result page should be 'Manage your Digital Platform Reporting'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
   }
 }

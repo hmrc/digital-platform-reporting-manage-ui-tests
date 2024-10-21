@@ -17,9 +17,9 @@
 package uk.gov.hmrc.ui.pages.contactdetails.organisation
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
-case class SecondaryContactNamePage() extends BasePage("/contact-details/change-second-contact/name") {
+case class SecondaryContactNamePage() extends ManageBasePage("/contact-details/change-second-contact/name") {
 
   def withName(name: String): SecondaryContactNamePage = {
     assertUrl(url)

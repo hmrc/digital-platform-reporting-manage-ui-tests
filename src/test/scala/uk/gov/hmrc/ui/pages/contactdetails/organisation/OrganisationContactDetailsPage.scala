@@ -16,20 +16,13 @@
 
 package uk.gov.hmrc.ui.pages.contactdetails.organisation
 
-import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
-case class OrganisationContactDetailsPage() extends BasePage("/contact-details/view-contact-details") {
+case class OrganisationContactDetailsPage() extends ManageBasePage("/contact-details/view-contact-details") {
 
-  def clickChangeFirstContact(): OrganisationContactDetailsPage =
+  def clickChangeFirstContact(): Unit =
     click("div.govuk-summary-card:nth-child(2) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)")
 
-  def clickChangeSecondContact(): OrganisationContactDetailsPage =
+  def clickChangeSecondContact(): Unit =
     click("div.govuk-summary-card:nth-child(3) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)")
-
-  private def click(cssSelector: String): OrganisationContactDetailsPage = {
-    assertUrl(url)
-    click(By.cssSelector(cssSelector))
-    this
-  }
 }

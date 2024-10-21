@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.models
+package uk.gov.hmrc.ui.pages.platformoperators
 
-sealed trait CredentialRole
+import support.helpers.YesNoRadioGroup
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case object Assistant extends CredentialRole
-case object User extends CredentialRole
+case class RegisteredInUkPage()
+    extends OperatorBasePage("/platform-operator/add-platform-operator/registered-address-in-uk")
+    with YesNoRadioGroup

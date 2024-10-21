@@ -17,9 +17,9 @@
 package uk.gov.hmrc.ui.pages.contactdetails.individual
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.ManageBasePage
 
-case class IndividualEmailAddressPage() extends BasePage("/contact-details/change-contact/email") {
+case class IndividualEmailAddressPage() extends ManageBasePage("/contact-details/change-contact/email") {
 
   def withEmail(email: String): IndividualEmailAddressPage = {
     assertUrl(url)

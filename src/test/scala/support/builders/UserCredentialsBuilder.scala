@@ -17,7 +17,7 @@
 package support.builders
 
 import support.builders.EnrolmentsDataBuilder.anEnrolmentsData
-import uk.gov.hmrc.ui.models.{Individual, Organisation, User, UserCredentials}
+import support.models.auth.{Individual, Organisation, User, UserCredentials}
 
 object UserCredentialsBuilder {
 
