@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.platformoperators.update
 
-case class IndexPage() extends ManageBasePage("/manage-reporting") {
+import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-  def clickAddPlatformOperator(): Unit =
-    click(s"a[href*='$platformOperatorBaseUrl/platform-operator/add-platform-operator/start']")
+case class TaxResidencyCountryPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-tax-resident-country") {
 
-  def clickViewPlatformOperators(): Unit =
-    click("a[href*='http://localhost:20005/digital-platform-reporting/platform-operator/view")
-
-  def clickChangeContactDetails(): Unit =
-    click("a[href*='/digital-platform-reporting/contact-details/view-contact-details']")
+  def withCountry(country: String): TaxResidencyCountryPage = {
+    assertUrl(url)
+    sendKeys(By.cssSelector("#value"), country)
+    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
+    this
+  }
 }

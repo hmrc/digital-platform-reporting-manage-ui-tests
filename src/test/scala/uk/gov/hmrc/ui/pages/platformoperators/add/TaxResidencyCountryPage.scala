@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.platformoperators.add
 
-import uk.gov.hmrc.configuration.TestEnvironment
+import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-abstract class ManageBasePage(relativeUrl: String) extends BasePage(relativeUrl) {
+case class TaxResidencyCountryPage()
+    extends OperatorBasePage("/platform-operator/add-platform-operator/tax-resident-country") {
 
-  override protected val baseUrl: String        = TestEnvironment.url("digital-platform-reporting-manage")
-  protected val platformOperatorBaseUrl: String = TestEnvironment.url("digital-platform-reporting-operator")
+  def withCountry(country: String): TaxResidencyCountryPage = {
+    assertUrl(url)
+    sendKeys(By.cssSelector("#value"), country)
+    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
+    this
+  }
 }
