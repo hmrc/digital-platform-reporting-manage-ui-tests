@@ -21,8 +21,9 @@ import uk.gov.hmrc.ui.pages.OperatorBasePage
 case class PlatformOperatorAddedPage()
     extends OperatorBasePage("/platform-operator/add-platform-operator/added-successfully") {
 
-  private val manageLinkCssSelector = "p.govuk-body:nth-child(6) > a:nth-child(1)"
-  private val addLinkCssSelector    = "p.govuk-body:nth-child(7) > a:nth-child(1)"
+  private val manageLinkCssSelector = "a[href*='http://localhost:20006/digital-platform-reporting/manage-reporting']"
+  private val addLinkCssSelector    =
+    "a[href*='/digital-platform-reporting/platform-operator/add-platform-operator/start']"
 
   def clickManageYourDigitalPlatformReporting(): Unit = click(manageLinkCssSelector)
 

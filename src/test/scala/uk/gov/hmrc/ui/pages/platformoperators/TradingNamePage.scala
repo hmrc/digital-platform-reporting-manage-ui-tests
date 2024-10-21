@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.pages.platformoperators
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class TradingNamePage() extends OperatorBasePage("/platform-operator/add-platform-operator/trading-name") {
+case class TradingNamePage() extends OperatorBasePage("/platform-operator/add-platform-operator/po-trading-name") {
 
   def withName(name: String): TradingNamePage = {
     assertUrl(url)

@@ -42,7 +42,7 @@ class OrganisationJourneysSpec extends BaseSpec {
 
   Feature("Organisation Journeys") {
     Scenario("Change Contact Details") {
-      Given("Individual user is subscribed")
+      Given("Organisation user is subscribed")
       val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
 
       And("Organisation user logs in")

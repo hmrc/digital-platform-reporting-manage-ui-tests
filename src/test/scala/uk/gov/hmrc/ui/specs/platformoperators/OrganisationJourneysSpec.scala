@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.specs.platformoperators
 
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.anOrganisationUser
+import support.steps.SubscriptionSteps
 import uk.gov.hmrc.ui.pages.platformoperators._
 import uk.gov.hmrc.ui.pages.platformoperators.organisation._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
@@ -56,11 +57,14 @@ class OrganisationJourneysSpec extends BaseSpec {
   private val chrnPage                         = ChrnPage()
   private val resultPage                       = ResultPage
 
-  ignore("Organisation Journeys") {
+  Feature("Organisation Journeys") {
     Scenario("Add Platform operator without TIN and not registered UK") {
-      Given("Organisation user logs in")
+      Given("Organisation user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+
+      And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser)
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -91,17 +95,20 @@ class OrganisationJourneysSpec extends BaseSpec {
       startPage.clickBack()
       platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
 
-      Then("The result page should be 'Manage your Digital Platform Reporting'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
     Scenario("Add Platform operator without TIN and registered in UK") {
-      Given("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser)
+      Given("Organisation user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
 
-      When("Add Platform operator is added")
+      And("Organisation user logs in")
+      loginPage.show()
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+
+      When("Platform operator is added")
       indexPage.clickAddPlatformOperator()
       startPage.continue()
       businessNamePage.withName("Mr Bean Ltd.").continue()
@@ -130,15 +137,18 @@ class OrganisationJourneysSpec extends BaseSpec {
       startPage.clickBack()
       platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
 
-      Then("The result page should be 'Manage your Digital Platform Reporting'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
     Scenario("Add Platform operator with TIN, not tax resident in UK, not registered in UK") {
-      Given("Organisation user logs in")
+      Given("Organisation user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+
+      And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser)
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -172,15 +182,18 @@ class OrganisationJourneysSpec extends BaseSpec {
       startPage.clickBack()
       platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
 
-      Then("The result page should be 'Manage your Digital Platform Reporting'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
     Scenario("Add Platform operator with TIN, not tax resident in UK, registered in UK") {
-      Given("Organisation user logs in")
+      Given("Organisation user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+
+      And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser)
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -214,15 +227,18 @@ class OrganisationJourneysSpec extends BaseSpec {
       startPage.clickBack()
       platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
 
-      Then("The result page should be 'Manage your Digital Platform Reporting'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
     Scenario("Add Platform operator with TIN, tax resident in UK, not registered in UK") {
-      Given("Organisation user logs in")
+      Given("Organisation user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+
+      And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser)
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -265,15 +281,18 @@ class OrganisationJourneysSpec extends BaseSpec {
       startPage.clickBack()
       platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
 
-      Then("The result page should be 'Manage your Digital Platform Reporting'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
     Scenario("Add Platform operator with TIN, tax resident in UK, registered in UK") {
-      Given("Organisation user logs in")
+      Given("Organisation user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+
+      And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser)
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -316,9 +335,9 @@ class OrganisationJourneysSpec extends BaseSpec {
       startPage.clickBack()
       platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
 
-      Then("The result page should be 'Manage your Digital Platform Reporting'")
+      Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your Digital Platform Reporting"
+      resultPage.heading shouldBe "Manage your digital platform reporting"
     }
   }
 }

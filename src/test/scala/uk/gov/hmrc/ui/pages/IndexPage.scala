@@ -16,13 +16,17 @@
 
 package uk.gov.hmrc.ui.pages
 
+import org.openqa.selenium.By
+
 case class IndexPage() extends ManageBasePage("/manage-reporting") {
 
-  private val changeLinkCssSelector = "div.card:nth-child(5) > div:nth-child(2) > p:nth-child(1) > a:nth-child(1)"
+  private val changeLinkCssSelector   = "a[href*='/digital-platform-reporting/contact-details/view-contact-details']"
+  private val addPlatformOperatorLink =
+    s"a[href*='$platformOperatorBaseUrl/platform-operator/add-platform-operator/start']"
 
   def clickAddPlatformOperator(): Unit =
-    if (elementExists("#addPlatformOperator")) click("#addPlatformOperator")
-    else click("#addAnotherPlatformOperator")
+    if (elementExists(addPlatformOperatorLink)) click(addPlatformOperatorLink)
+    else click(By.cssSelector("#addAnotherPlatformOperator"))
 
   def clickChangeContactDetails(): Unit = click(changeLinkCssSelector)
 }
