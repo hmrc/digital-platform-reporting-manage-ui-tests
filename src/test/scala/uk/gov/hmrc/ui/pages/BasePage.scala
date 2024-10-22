@@ -51,7 +51,7 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
     click(By.cssSelector(cssSelector))
   }
 
-  protected def elementExists(cssSelector: String): Boolean =
+  def elementExists(cssSelector: String): Boolean =
     Try(Driver.instance.findElement(By.cssSelector(cssSelector))).isSuccess
 
   protected def assertUrl(url: String): Unit =

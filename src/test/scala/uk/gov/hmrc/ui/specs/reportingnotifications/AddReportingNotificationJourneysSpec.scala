@@ -1,5 +1,4 @@
 /*
-/*
  * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs.platformoperators
+package uk.gov.hmrc.ui.specs.reportingnotifications
 
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.{anIndividualUser, anOrganisationUser}
 import support.steps.SubscriptionSteps
 import uk.gov.hmrc.ui.pages.platformoperators._
 import uk.gov.hmrc.ui.pages.platformoperators.add._
+import uk.gov.hmrc.ui.pages.reportingnotification.add.{AddNotificationPage, DueDiligencePage, FirstPeriodPage, NotificationCheckYourAnswersPage, NotificationSuccessPage, PlatformNotificationStartPage, WhichPlatformOperatorPage}
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
-class AddPlatformOperatorsJourneysSpec extends BaseSpec {
+class AddReportingNotificationJourneysSpec extends BaseSpec {
 
   private val loginPage                        = AuthLoginStubPage
   private val indexPage                        = IndexPage()
@@ -58,7 +58,18 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
   private val chrnPage                         = ChrnPage()
   private val resultPage                       = ResultPage
 
-  Feature("Add Platform Operator Journeys") {
+
+
+  private val platformOperatorsPage             = PlatformOperatorsPage()
+  private val whichPlatformOperatorPage        = WhichPlatformOperatorPage()
+
+
+
+
+
+
+
+ /* Feature("Add Platform Operator Journeys") {
     Scenario("Add Platform operator without TIN and not registered UK") {
       Given("Organisation user is subscribed")
       val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
@@ -101,9 +112,73 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
       resultPage.heading shouldBe "Manage your digital platform reporting"
+    }*/
+
+    Feature("Add Operator Notification Journeys") {
+    Scenario("Add operator notification not registered UK") {
+      Given("Organisation user is subscribed")
+      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+
+      And("Organisation user logs in")
+      loginPage.show()
+      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      And ("Already added the platform operator")
+      indexPage.clickAddPlatformOperator()
+      startPage.continue()
+      businessNamePage.withName("The Simpsons Ltd.").continue()
+      hasTradingNamePage.selectNo().continue()
+      hasTaxIdentifierPage.clickBack()
+      hasTradingNamePage.selectYes().continue()
+      tradingNamePage.withName("Simpsons Ltd.").continue()
+      hasTaxIdentifierPage.selectNo().continue()
+      registeredInUkPage.selectNo().continue()
+      internationalAddressPage.withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States").continue()
+      primaryContactNamePage.withName("Marge Simpson").continue()
+      primaryContactEmailAddressPage.withEmail("marge.simpson@example.com").continue()
+      canPhonePrimaryContactPage.selectNo().continue()
+      hasSecondaryContactPage.clickBack()
+      canPhonePrimaryContactPage.selectYes().continue()
+      primaryContactPhoneNumberPage.withPhoneNumber("078 12345678").continue()
+      hasSecondaryContactPage.selectNo().continue()
+      checkYourAnswersPage.clickBack()
+      hasSecondaryContactPage.selectYes().continue()
+      secondaryContactNamePage.withName("Lisa Simpson").continue()
+      secondaryContactEmailAddressPage.withEmail("lisa.simpson@example.com").continue()
+      canPhoneSecondaryContactPage.selectNo().continue()
+      checkYourAnswersPage.clickBack()
+      canPhoneSecondaryContactPage.selectYes().continue()
+      secondaryContactPhoneNumberPage.withPhoneNumber("078 12345679").continue()
+      checkYourAnswersPage.continue()
+      platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
+      indexPage.clickViewPlatformOperators()
+      val platformOperatorId = platformOperatorsPage.getOperatorId(index = 1)
+      platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
+
+      When("Add notification")
+      val platformNotificationStartPage     = PlatformNotificationStartPage(platformOperatorId)
+      val addNotificationPage               = AddNotificationPage(platformOperatorId)
+      val firstPeriodPage                   = FirstPeriodPage(platformOperatorId)
+      val dueDiligencePage                  = DueDiligencePage(platformOperatorId)
+      val notificationCheckYourAnswersPage  = NotificationCheckYourAnswersPage(platformOperatorId)
+      val notificationSuccessPage  = NotificationSuccessPage(platformOperatorId)
+
+
+      indexPage.clickAddReportingNotification()
+      whichPlatformOperatorPage.continue()
+      platformNotificationStartPage.continue()
+      addNotificationPage.selectReportingPlatformOperator()
+      addNotificationPage.continue()
+      firstPeriodPage.continue()
+      dueDiligencePage.selectExtendedTimelimit()
+      dueDiligencePage.selectExtendedTimelimit()
+      dueDiligencePage.continue()
+      notificationCheckYourAnswersPage.continue()
+      notificationSuccessPage.clickManageYourDigitalPlatformReproting()
+
+
     }
 
-    Scenario("Add Platform operator without TIN and registered in UK") {
+ /*   Scenario("Add Platform operator without TIN and registered in UK") {
       Given("Individual user is subscribed")
       val enrolmentsData = SubscriptionSteps.subscribedIndividualEnrolment()
 
@@ -345,7 +420,6 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
       resultPage.heading shouldBe "Manage your digital platform reporting"
-    }
+    }*/
   }
 }
-*/
