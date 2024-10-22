@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.platformoperators.update
 
-import uk.gov.hmrc.configuration.TestEnvironment
+import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-abstract class ManageBasePage(relativeUrl: String) extends BasePage(relativeUrl) {
+case class InternationalTaxIdentifierPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-international-tin") {
 
-  override protected val baseUrl: String        = TestEnvironment.url("digital-platform-reporting-manage")
-  protected val platformOperatorBaseUrl: String = TestEnvironment.url("digital-platform-reporting-operator")
+  def withTaxIdentificationNumber(tin: String): InternationalTaxIdentifierPage = {
+    assertUrl(url)
+    sendKeys(By.cssSelector("#value"), tin)
+    this
+  }
 }

@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.platformoperators
 
-case class IndexPage() extends ManageBasePage("/manage-reporting") {
+import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-  def clickAddPlatformOperator(): Unit =
-    click(s"a[href*='$platformOperatorBaseUrl/platform-operator/add-platform-operator/start']")
+case class PlatformOperatorsPage() extends OperatorBasePage("/platform-operator/view") {
 
-  def clickViewPlatformOperators(): Unit =
-    click("a[href*='http://localhost:20005/digital-platform-reporting/platform-operator/view")
+  private val addNewCssSelector = "a[href*='/digital-platform-reporting/platform-operator/add-platform-operator/start']"
 
-  def clickChangeContactDetails(): Unit =
-    click("a[href*='/digital-platform-reporting/contact-details/view-contact-details']")
+  def clickAddNewPlatformOperator(): Unit = click(addNewCssSelector)
+
+  def clickView(index: Int): String = {
+    val operatorId = getText(By.cssSelector(".govuk-summary-list__value"))
+    click(s".govuk-summary-list__actions > a:nth-child($index)")
+    operatorId
+  }
 }

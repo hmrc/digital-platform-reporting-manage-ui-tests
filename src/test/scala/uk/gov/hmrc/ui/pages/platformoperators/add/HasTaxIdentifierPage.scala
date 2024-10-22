@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.platformoperators.add
 
-import uk.gov.hmrc.configuration.TestEnvironment
+import support.helpers.YesNoRadioGroup
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-abstract class ManageBasePage(relativeUrl: String) extends BasePage(relativeUrl) {
-
-  override protected val baseUrl: String        = TestEnvironment.url("digital-platform-reporting-manage")
-  protected val platformOperatorBaseUrl: String = TestEnvironment.url("digital-platform-reporting-operator")
-}
+case class HasTaxIdentifierPage()
+    extends OperatorBasePage("/platform-operator/add-platform-operator/have-tin")
+    with YesNoRadioGroup

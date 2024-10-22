@@ -21,8 +21,8 @@ import uk.gov.hmrc.ui.pages.ManageBasePage
 case class IndividualContactDetailsPage() extends ManageBasePage("/contact-details/view-contact-details") {
 
   def clickChangeEmail(): Unit =
-    click("div.govuk-summary-list__row:nth-child(1) > dd:nth-child(3) > a:nth-child(1)")
+    click("a[href*='/digital-platform-reporting/contact-details/change-contact/email']")
 
   def clickChangeCanWeContactYouByPhone(): Unit =
-    click("div.govuk-summary-list__row:nth-child(2) > dd:nth-child(3) > a:nth-child(1)")
+    click("a[href*='/digital-platform-reporting/contact-details/change-contact/can-we-telephone']")
 }
