@@ -22,6 +22,12 @@ import uk.gov.hmrc.ui.pages.OperatorBasePage
 case class DueDiligencePage(platformOperatorId: String)
     extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/due-diligence") {
 
-  def selectExtendedTimelimit() = selectCheckbox(By.cssSelector("#value_0"))
-  def selectActiveSellerDue()   = selectCheckbox(By.cssSelector("#value_1"))
+  def selectExtendedTimelimit(): DueDiligencePage = selectBox("#value_0")
+  def selectActiveSellerDue(): DueDiligencePage   = selectBox("#value_1")
+
+  private def selectBox(cssSelector: String): DueDiligencePage = {
+    assertUrl(url)
+    selectCheckbox(By.cssSelector(cssSelector))
+    this
+  }
 }

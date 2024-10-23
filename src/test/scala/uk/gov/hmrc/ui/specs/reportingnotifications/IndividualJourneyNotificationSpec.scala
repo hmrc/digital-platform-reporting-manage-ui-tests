@@ -42,20 +42,15 @@ class IndividualJourneyNotificationSpec extends BaseSpec {
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
       When("Add notification")
-      val dueDiligencePage                 = DueDiligencePage(platformOperatorId)
-      val notificationCheckYourAnswersPage = NotificationCheckYourAnswersPage(platformOperatorId)
-      val notificationSuccessPage          = NotificationSuccessPage(platformOperatorId)
 
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      dueDiligencePage.selectExtendedTimelimit()
-      dueDiligencePage.selectActiveSellerDue()
-      dueDiligencePage.continue()
-      notificationCheckYourAnswersPage.continue()
-      notificationSuccessPage.clickManageYourDigitalPlatformReproting()
+      DueDiligencePage(platformOperatorId).selectExtendedTimelimit().selectActiveSellerDue().continue()
+      NotificationCheckYourAnswersPage(platformOperatorId).continue()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
