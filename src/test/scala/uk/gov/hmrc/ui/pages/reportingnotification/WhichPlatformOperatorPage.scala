@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification.add
+package uk.gov.hmrc.ui.pages.reportingnotification
 
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class WhichPlatformOperatorPage() extends OperatorBasePage("/platform-operator/reporting-notification/which-platform-operator")
+case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator")

@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification.add
+package uk.gov.hmrc.ui.pages.reportingnotification
 
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class PlatformNotificationStartPage(platformOperatorId: String) extends OperatorBasePage(s"/platform-operator/reporting-notification/$platformOperatorId/start")
+case class NotificationSuccessPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/added-successfully") {
+
+  def clickManageYourDigitalPlatformReproting() = click("#main-content > div > div > p:nth-child(5) > a")
+}

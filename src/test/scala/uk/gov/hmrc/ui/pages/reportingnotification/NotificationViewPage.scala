@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification.add
+package uk.gov.hmrc.ui.pages.reportingnotification
 
-import org.openqa.selenium.By
+import support.helpers.YesNoRadioGroup
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class FirstPeriodPage(platformOperatorId: String) extends OperatorBasePage(s"/platform-operator/reporting-notification/$platformOperatorId/first-period")
-
-
-
-
+case class NotificationViewPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/view")
+    with YesNoRadioGroup {}

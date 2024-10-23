@@ -14,17 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification.add
+package uk.gov.hmrc.ui.pages.reportingnotification
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class DueDiligencePage(platformOperatorId: String) extends OperatorBasePage(s"/platform-operator/reporting-notification/$platformOperatorId/due-diligence") {
-
-  def selectExtendedTimelimit()  =  click(By.cssSelector("#value_0"))
-  def selectActiveSellerDue()   = click(By.cssSelector("#value_1"))
-}
-
-
-
-
+case class PlatformNotificationStartPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/start")

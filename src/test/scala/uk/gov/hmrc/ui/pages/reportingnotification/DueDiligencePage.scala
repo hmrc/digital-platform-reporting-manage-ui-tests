@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification.add
+package uk.gov.hmrc.ui.pages.reportingnotification
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class NotificationSuccessPage(platformOperatorId: String) extends OperatorBasePage(s"/platform-operator/reporting-notification/$platformOperatorId/added-successfully"){
+case class DueDiligencePage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/due-diligence") {
 
-  def clickManageYourDigitalPlatformReproting() = click("#main-content > div > div > p:nth-child(5) > a")
+  def selectExtendedTimelimit() = selectCheckbox(By.cssSelector("#value_0"))
+  def selectActiveSellerDue()   = selectCheckbox(By.cssSelector("#value_1"))
 }
