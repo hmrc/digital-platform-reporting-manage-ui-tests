@@ -24,10 +24,9 @@ import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
 class IndividualJourneyNotificationSpec extends BaseSpec {
 
-  private val loginPage  = AuthLoginStubPage
-  private val indexPage  = IndexPage()
-  private val resultPage = ResultPage
-
+  private val loginPage                 = AuthLoginStubPage
+  private val indexPage                 = IndexPage()
+  private val resultPage                = ResultPage
   private val whichPlatformOperatorPage = WhichPlatformOperatorPage()
 
   Feature("Add Operator Notification Journeys") {
@@ -42,15 +41,14 @@ class IndividualJourneyNotificationSpec extends BaseSpec {
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
       When("Add notification")
-
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      DueDiligencePage(platformOperatorId).selectExtendedTimelimit().selectActiveSellerDue().continue()
+      DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
       NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")

@@ -19,8 +19,6 @@ package uk.gov.hmrc.ui.specs.reportingnotifications
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.anOrganisationUser
 import support.steps.{PlatformOperatorSteps, SubscriptionSteps}
-import uk.gov.hmrc.ui.pages.platformoperators._
-import uk.gov.hmrc.ui.pages.platformoperators.add._
 import uk.gov.hmrc.ui.pages.reportingnotification._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
@@ -48,14 +46,13 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      DueDiligencePage(platformOperatorId).selectExtendedTimelimit().selectActiveSellerDue().continue()
+      DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
       NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
       resultPage.heading shouldBe "Manage your digital platform reporting"
-
     }
 
     Scenario("Add operator notification with EPO Notification") {
@@ -68,19 +65,17 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
       When("Add notification")
-
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
       NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
       resultPage.heading shouldBe "Manage your digital platform reporting"
-
     }
 
     Scenario("Add multiple operator notification with one RPO and one EPO Notification") {
@@ -93,15 +88,14 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
       When("Add multiple notifications")
-
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      DueDiligencePage(platformOperatorId).selectExtendedTimelimit().selectActiveSellerDue().continue()
+      DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
       NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
@@ -110,7 +104,7 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
       NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -142,9 +136,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      DueDiligencePage(platformOperatorId).selectExtendedTimelimit().selectActiveSellerDue().continue()
+      DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
       NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
@@ -153,7 +147,7 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
       NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReproting()
+      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")

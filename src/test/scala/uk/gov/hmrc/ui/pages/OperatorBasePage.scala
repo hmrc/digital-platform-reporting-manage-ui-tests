@@ -21,4 +21,5 @@ import uk.gov.hmrc.configuration.TestEnvironment
 abstract class OperatorBasePage(relativeUrl: String) extends BasePage(relativeUrl) {
 
   override protected val baseUrl: String = TestEnvironment.url("digital-platform-reporting-operator")
+  protected val manageBaseUrl: String    = TestEnvironment.url("digital-platform-reporting-manage")
 }

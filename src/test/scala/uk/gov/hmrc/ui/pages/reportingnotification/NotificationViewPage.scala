@@ -21,4 +21,4 @@ import uk.gov.hmrc.ui.pages.OperatorBasePage
 
 case class NotificationViewPage(platformOperatorId: String)
     extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/view")
-    with YesNoRadioGroup {}
+    with YesNoRadioGroup

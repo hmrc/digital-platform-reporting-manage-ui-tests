@@ -21,5 +21,6 @@ import uk.gov.hmrc.ui.pages.OperatorBasePage
 case class NotificationSuccessPage(platformOperatorId: String)
     extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/added-successfully") {
 
-  def clickManageYourDigitalPlatformReproting() = click("#main-content > div > div > p:nth-child(5) > a")
+  def clickManageYourDigitalPlatformReporting(): Unit =
+    click("a[href*='http://localhost:20006/digital-platform-reporting/manage-reporting']")
 }

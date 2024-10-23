@@ -29,12 +29,9 @@ case class PlatformOperatorsPage() extends OperatorBasePage("/platform-operator/
     val operatorId = getText(By.cssSelector(".govuk-summary-list__value"))
     click(s".govuk-summary-list__actions > a:nth-child($index)")
     operatorId
-
   }
 
-  def getOperatorId(index: Int): String = {
-    val operatorId = getText(By.cssSelector(".govuk-summary-list__value"))
-    operatorId
+  def platformOperator: String = getText(By.cssSelector(".govuk-summary-list__value"))
 
-  }
+  def goToManageOperator(): Unit = get(s"$manageBaseUrl/manage-reporting")
 }
