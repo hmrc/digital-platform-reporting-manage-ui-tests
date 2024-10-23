@@ -170,6 +170,5 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       resultPage.url       should include("/manage-reporting")
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
-
   }
 }

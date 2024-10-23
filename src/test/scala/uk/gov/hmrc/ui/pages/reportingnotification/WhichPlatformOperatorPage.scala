@@ -16,6 +16,18 @@
 
 package uk.gov.hmrc.ui.pages.reportingnotification
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator")
+case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator") {
+
+  def getValue(): String                                      = getText(By.cssSelector("#value__option--0"))
+  def selectOperator(text: String): WhichPlatformOperatorPage = selectValue("#value__option--0", text)
+
+  private def selectValue(cssSelector: String, value: String): WhichPlatformOperatorPage = {
+    assertUrl(url)
+    selectByValue(By.cssSelector(cssSelector), value)
+    this
+  }
+
+}
