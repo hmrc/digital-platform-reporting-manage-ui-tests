@@ -31,10 +31,10 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
 
   Feature("Add Operator Notification Journeys") {
     Scenario("Add operator notification with RPO Notification for extended and active seller due diligence") {
-      Given("Organisation user is subscribed")
+      Given("Organisation User is subscribed")
       val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
 
-      And("Organisation user logs in")
+      And("Organisation User logs in")
       loginPage.show()
       loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
@@ -56,9 +56,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add operator notification with EPO Notification") {
-      Given("Organisation user is subscribed")
+      Given("Organisation User is subscribed")
       val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation user logs in")
+      And("Organisation User logs in")
       loginPage.show()
       loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
@@ -79,9 +79,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add multiple operator notification with one RPO and one EPO Notification") {
-      Given("Organisation user is subscribed")
+      Given("Organisation User is subscribed")
       val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation user logs in")
+      And("Organisation User logs in")
       loginPage.show()
       loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
@@ -121,9 +121,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("View multiple operator notification with one RPO and one EPO Notification") {
-      Given("Organisation user is subscribed")
+      Given("Organisation User is subscribed")
       val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation user logs in")
+      And("Organisation User logs in")
       loginPage.show()
       loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
@@ -166,12 +166,12 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add operator notification with EPO Notification where we have multiple operators") {
-      Given("Organisation user is subscribed")
+      Given("Organisation User is subscribed")
       val enrolmentsData      = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation user logs in")
+      And("Organisation User logs in")
       loginPage.show()
       loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
-      And("Already added the platform operator")
+      And("Already added more than one platform operator")
       val platformOperatorId1 = PlatformOperatorSteps.addPlatformOperator("Simpsons Ltd.")
       PlatformOperatorSteps.addPlatformOperator("Family Guy Ltd.")
 
