@@ -17,7 +17,7 @@
 package uk.gov.hmrc.ui.specs.reportingnotifications
 
 import support.BaseSpec
-import support.builders.UserCredentialsBuilder.anOrganisationUser
+import support.builders.UserCredentialsBuilder.aUserCredentials
 import support.steps.{PlatformOperatorSteps, SubscriptionSteps}
 import uk.gov.hmrc.ui.pages.reportingnotification._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
@@ -36,7 +36,7 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
 
       And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -60,7 +60,7 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
       And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -83,7 +83,7 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
       And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -125,7 +125,7 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
       And("Organisation user logs in")
       loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -159,6 +159,30 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       NotificationViewPage(platformOperatorId).selectNo().continue()
       ManageReportingPage(platformOperatorId).clickViewReportingNotification()
       NotificationViewPage(platformOperatorId).selectNo().continue()
+
+      Then("The result page should be 'Manage your digital platform reporting'")
+      resultPage.url       should include("/manage-reporting")
+      resultPage.heading shouldBe "Manage your digital platform reporting"
+    }
+
+    Scenario("Add operator notification with EPO Notification where we have multiple operators") {
+      Given("Organisation user is subscribed")
+      val enrolmentsData      = SubscriptionSteps.subscribedOrganisationEnrolment()
+      And("Organisation user logs in")
+      loginPage.show()
+      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
+      And("Already added the platform operator")
+      val platformOperatorId1 = PlatformOperatorSteps.addPlatformOperator("Simpsons Ltd.")
+      PlatformOperatorSteps.addPlatformOperator("Family Guy Ltd.")
+
+      When("Add notification")
+      indexPage.clickAddReportingNotification()
+      whichPlatformOperatorPage.withPlatformOperator("Simpsons Ltd.").continue()
+      PlatformNotificationStartPage(platformOperatorId1).continue()
+      AddNotificationPage(platformOperatorId1).selectExcludedPlatformOperator().continue()
+      FirstPeriodPage(platformOperatorId1).continue()
+      NotificationCheckYourAnswersPage(platformOperatorId1).continue()
+      NotificationSuccessPage(platformOperatorId1).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")

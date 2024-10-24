@@ -16,6 +16,15 @@
 
 package uk.gov.hmrc.ui.pages.reportingnotification
 
+import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator")
+case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator") {
+
+  def withPlatformOperator(platformOperator: String): WhichPlatformOperatorPage = {
+    sendKeys(By.cssSelector("#value"), platformOperator)
+    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
+    this
+  }
+}

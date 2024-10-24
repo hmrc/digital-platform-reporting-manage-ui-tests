@@ -45,10 +45,10 @@ object PlatformOperatorSteps extends PageObject {
 
   private val platformOperatorsPage = PlatformOperatorsPage()
 
-  def addPlatformOperator(): String = {
+  def addPlatformOperator(platformOperator: String = "Simpsons Ltd."): String = {
     indexPage.clickAddPlatformOperator()
     startPage.continue()
-    businessNamePage.withName("The Simpsons Ltd.").continue()
+    businessNamePage.withName(platformOperator).continue()
     hasTradingNamePage.selectNo().continue()
     hasTaxIdentifierPage.clickBack()
     hasTradingNamePage.selectYes().continue()
