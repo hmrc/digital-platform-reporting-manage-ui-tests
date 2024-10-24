@@ -26,4 +26,7 @@ case class IndexPage() extends ManageBasePage("/manage-reporting") {
 
   def clickChangeContactDetails(): Unit =
     click("a[href*='/digital-platform-reporting/contact-details/view-contact-details']")
+
+  def clickAddReportingNotification(): Unit =
+    click(s"a[href*='$platformOperatorBaseUrl/reporting-notification/which-platform-operator']")
 }

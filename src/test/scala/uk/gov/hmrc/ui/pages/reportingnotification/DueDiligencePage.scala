@@ -14,24 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.platformoperators
+package uk.gov.hmrc.ui.pages.reportingnotification
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class PlatformOperatorsPage() extends OperatorBasePage("/platform-operator/view") {
+case class DueDiligencePage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/due-diligence") {
 
-  private val addNewCssSelector = "a[href*='/digital-platform-reporting/platform-operator/add-platform-operator/start']"
+  def selectExtendedTimeLimit(): DueDiligencePage = selectBox("#value_0")
+  def selectActiveSellerDue(): DueDiligencePage   = selectBox("#value_1")
 
-  def clickAddNewPlatformOperator(): Unit = click(addNewCssSelector)
-
-  def clickView(index: Int): String = {
-    val operatorId = getText(By.cssSelector(".govuk-summary-list__value"))
-    click(s".govuk-summary-list__actions > a:nth-child($index)")
-    operatorId
+  private def selectBox(cssSelector: String): DueDiligencePage = {
+    assertUrl(url)
+    selectCheckbox(By.cssSelector(cssSelector))
+    this
   }
-
-  def platformOperator: String = getText(By.cssSelector(".govuk-summary-list__value"))
-
-  def goToManageOperator(): Unit = get(s"$manageBaseUrl/manage-reporting")
 }

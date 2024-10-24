@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.reportingnotification
 
-import uk.gov.hmrc.configuration.TestEnvironment
+import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-abstract class OperatorBasePage(relativeUrl: String) extends BasePage(relativeUrl) {
+case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator") {
 
-  override protected val baseUrl: String = TestEnvironment.url("digital-platform-reporting-operator")
-  protected val manageBaseUrl: String    = TestEnvironment.url("digital-platform-reporting-manage")
+  def withPlatformOperator(platformOperator: String): WhichPlatformOperatorPage = {
+    sendKeys(By.cssSelector("#value"), platformOperator)
+    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
+    this
+  }
 }

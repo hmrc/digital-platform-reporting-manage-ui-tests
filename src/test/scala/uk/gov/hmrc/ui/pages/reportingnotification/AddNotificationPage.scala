@@ -14,24 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.platformoperators
+package uk.gov.hmrc.ui.pages.reportingnotification
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class PlatformOperatorsPage() extends OperatorBasePage("/platform-operator/view") {
+case class AddNotificationPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/add-notification") {
 
-  private val addNewCssSelector = "a[href*='/digital-platform-reporting/platform-operator/add-platform-operator/start']"
+  def selectReportingPlatformOperator(): AddNotificationPage = selectOption("#value_0")
 
-  def clickAddNewPlatformOperator(): Unit = click(addNewCssSelector)
+  def selectExcludedPlatformOperator(): AddNotificationPage = selectOption("#value_1")
 
-  def clickView(index: Int): String = {
-    val operatorId = getText(By.cssSelector(".govuk-summary-list__value"))
-    click(s".govuk-summary-list__actions > a:nth-child($index)")
-    operatorId
+  private def selectOption(cssSelector: String): AddNotificationPage = {
+    assertUrl(url)
+    click(By.cssSelector(cssSelector))
+    this
   }
-
-  def platformOperator: String = getText(By.cssSelector(".govuk-summary-list__value"))
-
-  def goToManageOperator(): Unit = get(s"$manageBaseUrl/manage-reporting")
 }
