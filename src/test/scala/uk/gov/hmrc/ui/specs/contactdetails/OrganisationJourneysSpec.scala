@@ -19,9 +19,11 @@ package uk.gov.hmrc.ui.specs.contactdetails
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.anOrganisationUser
 import support.steps.SubscriptionSteps
+import support.tags.ManageFeature
 import uk.gov.hmrc.ui.pages.contactdetails.organisation._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
+@ManageFeature
 class OrganisationJourneysSpec extends BaseSpec {
 
   private val loginPage                        = AuthLoginStubPage

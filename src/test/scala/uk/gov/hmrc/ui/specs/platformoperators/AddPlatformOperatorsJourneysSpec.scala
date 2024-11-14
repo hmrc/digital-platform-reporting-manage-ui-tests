@@ -19,10 +19,12 @@ package uk.gov.hmrc.ui.specs.platformoperators
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.{anIndividualUser, anOrganisationUser}
 import support.steps.SubscriptionSteps
+import support.tags.OperatorFeature
 import uk.gov.hmrc.ui.pages.platformoperators._
 import uk.gov.hmrc.ui.pages.platformoperators.add._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
+@OperatorFeature
 class AddPlatformOperatorsJourneysSpec extends BaseSpec {
 
   private val loginPage                        = AuthLoginStubPage
