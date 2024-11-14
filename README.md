@@ -32,9 +32,19 @@ Run tests as follows:
 sbt clean -Denvironment="<environment>" -Dbrowser="<browser>" --Dbrowser.option.headless="<headless>" "testOnly uk.gov.hmrc.ui.specs.*" testReport
 ```
 
-Alternatively you can use:
+Alternatively, to run all tests, you can use:
 ```bash
 ./run_tests.sh dev firefox true
+```
+
+To run tests in relation to Manage FE, you can use:
+```bash
+./run_manage_tests.sh dev firefox true
+```
+
+To run tests in relation to Operator FE, you can use:
+```bash
+./run_operator_tests.sh dev firefox true
 ```
 
 The above command has default values and if no parameters are passed the default values are: local, chrome and false.

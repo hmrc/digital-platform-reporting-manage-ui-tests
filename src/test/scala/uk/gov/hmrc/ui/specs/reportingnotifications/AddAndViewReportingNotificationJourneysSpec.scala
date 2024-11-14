@@ -19,9 +19,11 @@ package uk.gov.hmrc.ui.specs.reportingnotifications
 import support.BaseSpec
 import support.builders.UserCredentialsBuilder.aUserCredentials
 import support.steps.{PlatformOperatorSteps, SubscriptionSteps}
+import support.tags.OperatorFeature
 import uk.gov.hmrc.ui.pages.reportingnotification._
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
 
+@OperatorFeature
 class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
 
   private val loginPage                 = AuthLoginStubPage

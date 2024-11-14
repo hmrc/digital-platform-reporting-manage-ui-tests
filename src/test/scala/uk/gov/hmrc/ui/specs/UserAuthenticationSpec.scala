@@ -20,8 +20,10 @@ import support.BaseSpec
 import support.builders.EnrolmentsDataBuilder.anEnrolmentsData
 import support.builders.UserCredentialsBuilder.aUserCredentials
 import support.models.auth.{Individual, Organisation, User}
+import support.tags.ManageFeature
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, ResultPage}
 
+@ManageFeature
 class UserAuthenticationSpec extends BaseSpec {
 
   private val loginPage  = AuthLoginStubPage
