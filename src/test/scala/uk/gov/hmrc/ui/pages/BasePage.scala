@@ -55,5 +55,5 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
     Try(Driver.instance.findElement(By.cssSelector(cssSelector))).isSuccess
 
   protected def assertUrl(url: String): Unit =
-    assert(getCurrentUrl == url, s"Url was: $getCurrentUrl, but expected is $url")
+    assert(getCurrentUrl matches url, s"Url was: $getCurrentUrl, but expected is $url")
 }

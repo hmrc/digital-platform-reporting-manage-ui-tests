@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package support.tags;
+package uk.gov.hmrc.ui.pages.submissions
 
-import org.scalatest.TagAnnotation;
+import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.pages.SubmissionBasePage
 
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+case class SelectPlatformOperatorPage() extends SubmissionBasePage("/submission/which-platform-operator") {
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
-
-@Inherited
-@TagAnnotation
-@Target({METHOD, TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-public @interface OperatorFeature {
+  def withPlatformOperator(platformOperator: String): SelectPlatformOperatorPage = {
+    sendKeys(By.cssSelector("#value"), platformOperator)
+    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
+    this
+  }
 }

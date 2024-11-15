@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package support.tags;
+package uk.gov.hmrc.ui.pages.submissions
 
-import org.scalatest.TagAnnotation;
+import org.openqa.selenium.By
+import support.utils.RegexUtils.UuidRegExString
+import uk.gov.hmrc.ui.pages.SubmissionBasePage
 
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+case class UploadPage(platformOperatorId: String)
+    extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/upload") {
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
-
-@Inherited
-@TagAnnotation
-@Target({METHOD, TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-public @interface OperatorFeature {
+  def withFileToUpload(filePath: String): UploadPage = {
+    sendKeys(By.cssSelector("input[type=file]"), filePath)
+    this
+  }
 }

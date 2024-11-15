@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification
+package support
 
-import uk.gov.hmrc.ui.pages.OperatorBasePage
+import support.tags.OperatorFeature
 
-case class PlatformNotificationStartPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/start")
+@OperatorFeature
+class OperatorBaseSpec extends BaseSpec

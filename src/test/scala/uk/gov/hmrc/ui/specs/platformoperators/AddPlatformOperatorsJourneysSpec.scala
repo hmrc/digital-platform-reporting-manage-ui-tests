@@ -16,18 +16,14 @@
 
 package uk.gov.hmrc.ui.specs.platformoperators
 
-import support.BaseSpec
-import support.builders.UserCredentialsBuilder.{anIndividualUser, anOrganisationUser}
+import support.OperatorBaseSpec
 import support.steps.SubscriptionSteps
-import support.tags.OperatorFeature
 import uk.gov.hmrc.ui.pages.platformoperators._
 import uk.gov.hmrc.ui.pages.platformoperators.add._
-import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
+import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
-@OperatorFeature
-class AddPlatformOperatorsJourneysSpec extends BaseSpec {
+class AddPlatformOperatorsJourneysSpec extends OperatorBaseSpec {
 
-  private val loginPage                        = AuthLoginStubPage
   private val indexPage                        = IndexPage()
   private val startPage                        = StartPage()
   private val businessNamePage                 = BusinessNamePage()
@@ -61,12 +57,8 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
 
   Feature("Add Platform Operator Journeys") {
     Scenario("Add Platform operator without TIN and not registered UK") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -105,12 +97,8 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add Platform operator without TIN and registered in UK") {
-      Given("Individual user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedIndividualEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anIndividualUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Individual user")
+      SubscriptionSteps.newlySubscribedIndividual()
 
       When("Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -149,12 +137,8 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add Platform operator with TIN, not tax resident in UK, not registered in UK") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -196,12 +180,8 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add Platform operator with TIN, not tax resident in UK, registered in UK") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -241,12 +221,8 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add Platform operator with TIN, tax resident in UK, not registered in UK") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()
@@ -295,12 +271,8 @@ class AddPlatformOperatorsJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add Platform operator with TIN, tax resident in UK, registered in UK") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       When("Add Platform operator is added")
       indexPage.clickAddPlatformOperator()

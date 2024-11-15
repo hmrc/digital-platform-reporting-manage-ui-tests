@@ -16,18 +16,14 @@
 
 package uk.gov.hmrc.ui.specs.platformoperators
 
-import support.BaseSpec
-import support.builders.UserCredentialsBuilder.anOrganisationUser
+import support.OperatorBaseSpec
 import support.steps.SubscriptionSteps
-import support.tags.OperatorFeature
 import uk.gov.hmrc.ui.pages.platformoperators._
 import uk.gov.hmrc.ui.pages.platformoperators.add._
-import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
+import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
-@OperatorFeature
-class RemovePlatformOperatorsJourneysSpec extends BaseSpec {
+class RemovePlatformOperatorsJourneysSpec extends OperatorBaseSpec {
 
-  private val loginPage                      = AuthLoginStubPage
   private val indexPage                      = IndexPage()
   private val startPage                      = StartPage()
   private val businessNamePage               = BusinessNamePage()
@@ -46,12 +42,8 @@ class RemovePlatformOperatorsJourneysSpec extends BaseSpec {
 
   Feature("Remove Platform Operator Journeys") {
     Scenario("Remove Platform operator") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       And("Platform operator is added")
       indexPage.clickAddPlatformOperator()

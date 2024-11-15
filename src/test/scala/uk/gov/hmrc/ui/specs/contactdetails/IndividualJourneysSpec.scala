@@ -16,17 +16,13 @@
 
 package uk.gov.hmrc.ui.specs.contactdetails
 
-import support.BaseSpec
-import support.builders.UserCredentialsBuilder.anIndividualUser
+import support.ManageBaseSpec
 import support.steps.SubscriptionSteps
-import support.tags.ManageFeature
 import uk.gov.hmrc.ui.pages.contactdetails.individual._
-import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
+import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
-@ManageFeature
-class IndividualJourneysSpec extends BaseSpec {
+class IndividualJourneysSpec extends ManageBaseSpec {
 
-  private val loginPage                         = AuthLoginStubPage
   private val indexPage                         = IndexPage()
   private val individualContactDetailsPage      = IndividualContactDetailsPage()
   private val individualEmailAddressPage        = IndividualEmailAddressPage()
@@ -39,12 +35,8 @@ class IndividualJourneysSpec extends BaseSpec {
 
   Feature("Individual Journeys") {
     Scenario("Change Contact Details") {
-      Given("Individual user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedIndividualEnrolment()
-
-      And("Individual user logs in")
-      loginPage.show()
-      loginPage.loginAs(anIndividualUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Individual user")
+      SubscriptionSteps.newlySubscribedIndividual()
 
       When("Change contact details is clicked")
       indexPage.clickChangeContactDetails()

@@ -22,4 +22,5 @@ abstract class ManageBasePage(relativeUrl: String) extends BasePage(relativeUrl)
 
   override protected val baseUrl: String        = TestEnvironment.url("digital-platform-reporting-manage")
   protected val platformOperatorBaseUrl: String = TestEnvironment.url("digital-platform-reporting-operator")
+  protected val submissionBaseSpec: String      = TestEnvironment.url("digital-platform-reporting-submission")
 }

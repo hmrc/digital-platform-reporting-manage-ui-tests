@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification
+package uk.gov.hmrc.ui.pages.reportingnotifications
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class DueDiligencePage(platformOperatorId: String)
-    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/due-diligence") {
+case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator") {
 
-  def selectExtendedTimeLimit(): DueDiligencePage = selectBox("#value_0")
-  def selectActiveSellerDue(): DueDiligencePage   = selectBox("#value_1")
-
-  private def selectBox(cssSelector: String): DueDiligencePage = {
-    assertUrl(url)
-    selectCheckbox(By.cssSelector(cssSelector))
+  def withPlatformOperator(platformOperator: String): WhichPlatformOperatorPage = {
+    sendKeys(By.cssSelector("#value"), platformOperator)
+    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
     this
   }
 }

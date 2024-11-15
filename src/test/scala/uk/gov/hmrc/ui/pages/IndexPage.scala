@@ -29,4 +29,10 @@ case class IndexPage() extends ManageBasePage("/manage-reporting") {
 
   def clickAddReportingNotification(): Unit =
     click(s"a[href*='$platformOperatorBaseUrl/reporting-notification/which-platform-operator']")
+
+  def clickMakeXmlSubmission(): Unit =
+    click(s"a[href*='$submissionBaseSpec/submission/which-platform-operator']")
+
+  def clickViewXmlSubmissions(): Unit =
+    click(s"a[href*='$submissionBaseSpec/submission/view']")
 }

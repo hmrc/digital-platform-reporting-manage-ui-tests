@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-package support.tags;
+package uk.gov.hmrc.ui.pages.reportingnotifications
 
-import org.scalatest.TagAnnotation;
+import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+case class DueDiligencePage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/due-diligence") {
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
+  def selectExtendedTimeLimit(): DueDiligencePage = selectBox("#value_0")
+  def selectActiveSellerDue(): DueDiligencePage   = selectBox("#value_1")
 
-@Inherited
-@TagAnnotation
-@Target({METHOD, TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-public @interface OperatorFeature {
+  private def selectBox(cssSelector: String): DueDiligencePage = {
+    assertUrl(url)
+    selectCheckbox(By.cssSelector(cssSelector))
+    this
+  }
 }

@@ -16,29 +16,22 @@
 
 package uk.gov.hmrc.ui.specs.reportingnotifications
 
-import support.BaseSpec
-import support.builders.UserCredentialsBuilder.aUserCredentials
+import support.OperatorBaseSpec
 import support.steps.{PlatformOperatorSteps, SubscriptionSteps}
-import support.tags.OperatorFeature
-import uk.gov.hmrc.ui.pages.reportingnotification._
-import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
+import uk.gov.hmrc.ui.pages.reportingnotifications._
+import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
-@OperatorFeature
-class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
+class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
 
-  private val loginPage                 = AuthLoginStubPage
   private val indexPage                 = IndexPage()
   private val resultPage                = ResultPage
   private val whichPlatformOperatorPage = WhichPlatformOperatorPage()
 
   Feature("Add Operator Notification Journeys") {
     Scenario("Add operator notification with RPO Notification for extended and active seller due diligence") {
-      Given("Organisation User is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
-      And("Organisation User logs in")
-      loginPage.show()
-      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -49,8 +42,8 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
       DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
-      NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
+      CheckYourAnswersPage(platformOperatorId).continue()
+      SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -58,11 +51,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add operator notification with EPO Notification") {
-      Given("Organisation User is subscribed")
-      val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation User logs in")
-      loginPage.show()
-      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
+
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -72,8 +63,8 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
+      CheckYourAnswersPage(platformOperatorId).continue()
+      SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -81,11 +72,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add multiple operator notification with one RPO and one EPO Notification") {
-      Given("Organisation User is subscribed")
-      val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation User logs in")
-      loginPage.show()
-      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
+
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -96,17 +85,17 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
       DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
-      NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
+      CheckYourAnswersPage(platformOperatorId).continue()
+      SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
-      NotificationViewPage(platformOperatorId).selectYes().continue()
+      ViewPage(platformOperatorId).selectYes().continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
+      CheckYourAnswersPage(platformOperatorId).continue()
+      SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -115,7 +104,7 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       When("On view page select No")
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
-      NotificationViewPage(platformOperatorId).selectNo().continue()
+      ViewPage(platformOperatorId).selectNo().continue()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -123,11 +112,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("View multiple operator notification with one RPO and one EPO Notification") {
-      Given("Organisation User is subscribed")
-      val enrolmentsData     = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation User logs in")
-      loginPage.show()
-      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
+
       And("Already added the platform operator")
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator()
 
@@ -139,17 +126,17 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
       DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
-      NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
+      CheckYourAnswersPage(platformOperatorId).continue()
+      SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
-      NotificationViewPage(platformOperatorId).selectYes().continue()
+      ViewPage(platformOperatorId).selectYes().continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId).continue()
-      NotificationCheckYourAnswersPage(platformOperatorId).continue()
-      NotificationSuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
+      CheckYourAnswersPage(platformOperatorId).continue()
+      SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -158,9 +145,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       When("On view page select No")
       indexPage.clickAddReportingNotification()
       whichPlatformOperatorPage.continue()
-      NotificationViewPage(platformOperatorId).selectNo().continue()
+      ViewPage(platformOperatorId).selectNo().continue()
       ManageReportingPage(platformOperatorId).clickViewReportingNotification()
-      NotificationViewPage(platformOperatorId).selectNo().continue()
+      ViewPage(platformOperatorId).selectNo().continue()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -168,11 +155,9 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
     }
 
     Scenario("Add operator notification with EPO Notification where we have multiple operators") {
-      Given("Organisation User is subscribed")
-      val enrolmentsData      = SubscriptionSteps.subscribedOrganisationEnrolment()
-      And("Organisation User logs in")
-      loginPage.show()
-      loginPage.loginAs(aUserCredentials.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
+
       And("Already added more than one platform operator")
       val platformOperatorId1 = PlatformOperatorSteps.addPlatformOperator("Simpsons Ltd.")
       PlatformOperatorSteps.addPlatformOperator("Family Guy Ltd.")
@@ -183,8 +168,8 @@ class AddAndViewReportingNotificationJourneysSpec extends BaseSpec {
       PlatformNotificationStartPage(platformOperatorId1).continue()
       AddNotificationPage(platformOperatorId1).selectExcludedPlatformOperator().continue()
       FirstPeriodPage(platformOperatorId1).continue()
-      NotificationCheckYourAnswersPage(platformOperatorId1).continue()
-      NotificationSuccessPage(platformOperatorId1).clickManageYourDigitalPlatformReporting()
+      CheckYourAnswersPage(platformOperatorId1).continue()
+      SuccessPage(platformOperatorId1).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")

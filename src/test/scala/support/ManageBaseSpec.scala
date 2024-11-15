@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification
+package support
 
-import support.helpers.YesNoRadioGroup
-import uk.gov.hmrc.ui.pages.OperatorBasePage
+import support.tags.ManageFeature
 
-case class NotificationViewPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/view")
-    with YesNoRadioGroup
+@ManageFeature
+class ManageBaseSpec extends BaseSpec

@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification
+package uk.gov.hmrc.ui.pages.submissions
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.ui.pages.OperatorBasePage
+import support.utils.RegexUtils.UuidRegExString
+import uk.gov.hmrc.ui.pages.SubmissionBasePage
 
-case class WhichPlatformOperatorPage() extends OperatorBasePage("/reporting-notification/which-platform-operator") {
+case class UploadFailedPage(platformOperatorId: String)
+    extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/upload-failed") {
 
-  def withPlatformOperator(platformOperator: String): WhichPlatformOperatorPage = {
-    sendKeys(By.cssSelector("#value"), platformOperator)
-    Driver.instance.findElement(By.cssSelector("#value__option--0")).click()
+  def withFileToUpload(filePath: String): UploadFailedPage = {
+    sendKeys(By.cssSelector("input[type=file]"), filePath)
+    this
+  }
+
+  def assertContainsError(error: String): UploadFailedPage = {
+    assert(getText(By.cssSelector(".govuk-error-summary__body")) contains error)
     this
   }
 }
