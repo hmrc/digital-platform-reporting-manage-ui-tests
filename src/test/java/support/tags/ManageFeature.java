@@ -18,6 +18,7 @@ package support.tags;
 
 import org.scalatest.TagAnnotation;
 
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -25,6 +26,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 
+@Inherited
 @TagAnnotation
 @Target({METHOD, TYPE})
 @Retention(RetentionPolicy.RUNTIME)

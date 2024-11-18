@@ -17,16 +17,32 @@
 package support.steps
 
 import support.builders.EnrolmentsDataBuilder.anEnrolmentsData
+import support.builders.UserCredentialsBuilder.{anIndividualUser, anOrganisationUser}
 import support.models._
 import support.models.auth.EnrolmentsData
 import support.repositories.SubscriptionRepository
 import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.ui.pages.AuthLoginStubPage
 
 import java.time.Instant
 
 object SubscriptionSteps extends PageObject {
 
-  def subscribedIndividualEnrolment(): EnrolmentsData = {
+  private val loginPage = AuthLoginStubPage
+
+  def newlySubscribedIndividual(): Unit = {
+    val enrolmentsData = subscribedIndividualEnrolment()
+    loginPage.show()
+    loginPage.loginAs(anIndividualUser.copy(enrolmentsData = enrolmentsData))
+  }
+
+  def newlySubscribedOrganisation(): Unit = {
+    val enrolmentsData = subscribedOrganisationEnrolment()
+    loginPage.show()
+    loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+  }
+
+  private def subscribedIndividualEnrolment(): EnrolmentsData = {
     val dprsId = SubscriptionRepository.insert(
       Subscription(
         _id = "",
@@ -40,7 +56,7 @@ object SubscriptionSteps extends PageObject {
     anEnrolmentsData.copy(identifierValue = dprsId)
   }
 
-  def subscribedOrganisationEnrolment(): EnrolmentsData = {
+  private def subscribedOrganisationEnrolment(): EnrolmentsData = {
     val dprsId = SubscriptionRepository.insert(
       Subscription(
         _id = "",

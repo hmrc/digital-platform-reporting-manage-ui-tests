@@ -14,21 +14,9 @@
  * limitations under the License.
  */
 
-package support.tags;
+package support.utils
 
-import org.scalatest.TagAnnotation;
+object RegexUtils {
 
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
-
-@Inherited
-@TagAnnotation
-@Target({METHOD, TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-public @interface OperatorFeature {
+  val UuidRegExString: String = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 }

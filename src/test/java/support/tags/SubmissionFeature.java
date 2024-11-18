@@ -30,5 +30,5 @@ import static java.lang.annotation.ElementType.TYPE;
 @TagAnnotation
 @Target({METHOD, TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OperatorFeature {
+public @interface SubmissionFeature {
 }

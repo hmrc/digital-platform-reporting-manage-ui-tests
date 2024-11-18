@@ -16,15 +16,13 @@
 
 package uk.gov.hmrc.ui.specs
 
-import support.BaseSpec
+import support.ManageBaseSpec
 import support.builders.EnrolmentsDataBuilder.anEnrolmentsData
 import support.builders.UserCredentialsBuilder.aUserCredentials
 import support.models.auth.{Individual, Organisation, User}
-import support.tags.ManageFeature
 import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, ResultPage}
 
-@ManageFeature
-class UserAuthenticationSpec extends BaseSpec {
+class UserAuthenticationSpec extends ManageBaseSpec {
 
   private val loginPage  = AuthLoginStubPage
   private val resultPage = ResultPage

@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification
+package uk.gov.hmrc.ui.pages.reportingnotifications
 
+import support.helpers.YesNoRadioGroup
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class NotificationSuccessPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/added-successfully") {
-
-  def clickManageYourDigitalPlatformReporting(): Unit =
-    click("a[href*='http://localhost:20006/digital-platform-reporting/manage-reporting']")
-}
+case class ViewPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/view")
+    with YesNoRadioGroup

@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-package support.tags;
+package uk.gov.hmrc.ui.pages.reportingnotifications
 
-import org.scalatest.TagAnnotation;
+import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+case class SuccessPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/added-successfully") {
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
-
-@Inherited
-@TagAnnotation
-@Target({METHOD, TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-public @interface OperatorFeature {
+  def clickManageYourDigitalPlatformReporting(): Unit =
+    click("a[href*='http://localhost:20006/digital-platform-reporting/manage-reporting']")
 }

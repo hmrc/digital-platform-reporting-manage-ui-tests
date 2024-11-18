@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification
+package uk.gov.hmrc.ui.pages.submissions
 
-import uk.gov.hmrc.ui.pages.OperatorBasePage
+import support.utils.RegexUtils.UuidRegExString
+import uk.gov.hmrc.ui.pages.SubmissionBasePage
 
-case class NotificationCheckYourAnswersPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/check-your-answers")
+case class SendFilePage(platformOperatorId: String)
+    extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/send-file")

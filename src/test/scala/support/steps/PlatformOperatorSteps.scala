@@ -52,7 +52,7 @@ object PlatformOperatorSteps extends PageObject {
     hasTradingNamePage.selectNo().continue()
     hasTaxIdentifierPage.clickBack()
     hasTradingNamePage.selectYes().continue()
-    tradingNamePage.withName("Simpsons Ltd.").continue()
+    tradingNamePage.withName(s"The $platformOperator").continue()
     hasTaxIdentifierPage.selectNo().continue()
     registeredInUkPage.selectNo().continue()
     internationalAddressPage.withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States").continue()

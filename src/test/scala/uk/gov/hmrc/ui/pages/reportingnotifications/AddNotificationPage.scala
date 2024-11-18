@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages.reportingnotification
+package uk.gov.hmrc.ui.pages.reportingnotifications
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.OperatorBasePage
 
-case class FirstPeriodPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/first-period")
+case class AddNotificationPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/add-notification") {
+
+  def selectReportingPlatformOperator(): AddNotificationPage = selectOption("#value_0")
+
+  def selectExcludedPlatformOperator(): AddNotificationPage = selectOption("#value_1")
+
+  private def selectOption(cssSelector: String): AddNotificationPage = {
+    assertUrl(url)
+    click(By.cssSelector(cssSelector))
+    this
+  }
+}

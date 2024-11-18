@@ -16,17 +16,13 @@
 
 package uk.gov.hmrc.ui.specs.contactdetails
 
-import support.BaseSpec
-import support.builders.UserCredentialsBuilder.anOrganisationUser
+import support.ManageBaseSpec
 import support.steps.SubscriptionSteps
-import support.tags.ManageFeature
 import uk.gov.hmrc.ui.pages.contactdetails.organisation._
-import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
+import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
-@ManageFeature
-class OrganisationJourneysSpec extends BaseSpec {
+class OrganisationJourneysSpec extends ManageBaseSpec {
 
-  private val loginPage                        = AuthLoginStubPage
   private val indexPage                        = IndexPage()
   private val organisationContactDetailsPage   = OrganisationContactDetailsPage()
   private val primaryContactNamePage           = PrimaryContactNamePage()
@@ -44,12 +40,8 @@ class OrganisationJourneysSpec extends BaseSpec {
 
   Feature("Organisation Journeys") {
     Scenario("Change Contact Details") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       When("Change contact details is clicked")
       indexPage.clickChangeContactDetails()

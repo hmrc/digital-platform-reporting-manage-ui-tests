@@ -16,18 +16,14 @@
 
 package uk.gov.hmrc.ui.specs.platformoperators
 
-import support.BaseSpec
-import support.builders.UserCredentialsBuilder.anOrganisationUser
+import support.OperatorBaseSpec
 import support.steps.SubscriptionSteps
-import support.tags.OperatorFeature
 import uk.gov.hmrc.ui.pages.platformoperators._
 import uk.gov.hmrc.ui.pages.platformoperators.add.{CanPhonePrimaryContactPage, PlatformOperatorAddedPage}
-import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, IndexPage, ResultPage}
+import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
-@OperatorFeature
-class ViewAndChangePlatformOperatorDetailsJourneysSpec extends BaseSpec {
+class ViewAndChangePlatformOperatorDetailsJourneysSpec extends OperatorBaseSpec {
 
-  private val loginPage                         = AuthLoginStubPage
   private val indexPage                         = IndexPage()
   private val startPage                         = StartPage()
   private val addBusinessNamePage               = add.BusinessNamePage()
@@ -46,12 +42,8 @@ class ViewAndChangePlatformOperatorDetailsJourneysSpec extends BaseSpec {
 
   Feature("View and Change Platform Operator Journeys") {
     Scenario("View and Change Platform operator") {
-      Given("Organisation user is subscribed")
-      val enrolmentsData = SubscriptionSteps.subscribedOrganisationEnrolment()
-
-      And("Organisation user logs in")
-      loginPage.show()
-      loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+      Given("Newly subscribed Organisation user")
+      SubscriptionSteps.newlySubscribedOrganisation()
 
       And("Platform operator is added")
       indexPage.clickAddPlatformOperator()
