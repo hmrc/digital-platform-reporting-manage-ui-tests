@@ -16,24 +16,13 @@
 
 package uk.gov.hmrc.ui.pages.submissions
 
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import support.utils.RegexUtils.UuidRegExString
-import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.SubmissionBasePage
 
-import java.time.Duration
+case class CheckFilePage(platformOperatorId: String)
+    extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/check-file") {
 
-case class UploadingPage(platformOperatorId: String)
-    extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/uploading") {
-
-  def waitUntilFinishIfUploading(): Unit = {
-    val currentUrl = getCurrentUrl
-    if (currentUrl.contains("/uploading"))
-      fluentWait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(currentUrl)))
-  }
-
-  private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(3))
-    .pollingEvery(Duration.ofSeconds(1))
+  def waitUntilCheckIsFinished(): Unit =
+    while (getCurrentUrl.contains("/check-file") && elementExists(s".govuk-button"))
+      continue()
 }

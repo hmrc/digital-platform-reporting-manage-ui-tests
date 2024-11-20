@@ -22,6 +22,8 @@ import support.utils.FileUtils.fileToUploadFrom
 import uk.gov.hmrc.ui.pages.submissions._
 import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
+import java.nio.file.Paths
+
 class MakeNewSubmissionSpec extends SubmissionBaseSpec {
 
   private val indexPage                  = IndexPage()
@@ -102,10 +104,11 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
-      val fileToUpload = fileToUploadFrom("/SubmissionSampleTemplate.xml", platformOperatorId)
+      val fileToUpload = fileToUploadFrom("SubmissionSampleTemplate.xml", platformOperatorId)
       UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
-      UploadingPage(platformOperatorId).waitUntilFinish()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
+      CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
       SubmissionConfirmationPage(platformOperatorId).selectNo().continue()
 
       Then("The result page should be 'Manage your digital platform reporting'")
@@ -128,27 +131,27 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
 
       And("Non XML file is uploaded")
-      val nonXMLFile = getClass.getResource("/NotXml.xml").getPath
+      val nonXMLFile = Paths.get(getClass.getClassLoader.getResource("NotXml.xml").toURI).toFile.getAbsolutePath
       UploadPage(platformOperatorId).withFileToUpload(nonXMLFile).continue()
-      UploadingPage(platformOperatorId).waitUntilFinish()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("Error should be shown")
       UploadFailedPage(platformOperatorId).assertContainsError("The selected file must be XML")
 
       When("File with invalid schema is uploaded")
       UploadFailedPage(platformOperatorId)
-        .withFileToUpload(fileToUploadFrom("/InvalidSchemaTemplate.xml", platformOperatorId))
+        .withFileToUpload(fileToUploadFrom("InvalidSchemaTemplate.xml", platformOperatorId))
         .continue()
-      UploadingPage(platformOperatorId).waitUntilFinish()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("Error should be shown")
       UploadFailedPage(platformOperatorId).assertContainsError("The selected file does not match the schema")
 
       When("File with unknown platform operator id is uploaded")
       UploadFailedPage(platformOperatorId)
-        .withFileToUpload(fileToUploadFrom("/SubmissionSampleTemplate.xml", "unknown-po-id"))
+        .withFileToUpload(fileToUploadFrom("SubmissionSampleTemplate.xml", "unknown-po-id"))
         .continue()
-      UploadingPage(platformOperatorId).waitUntilFinish()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("Error should be shown")
       UploadFailedPage(platformOperatorId).assertContainsError("The Platform Operator IDs do not match")
@@ -169,9 +172,9 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorOne).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorOne).selectYes().continue()
       CheckContactDetailsPage(platformOperatorOne).selectYes().continue()
-      val fileToUpload = fileToUploadFrom("/SubmissionSampleTemplate.xml", platformOperatorOne)
+      val fileToUpload = fileToUploadFrom("SubmissionSampleTemplate.xml", platformOperatorOne)
       UploadPage(platformOperatorOne).withFileToUpload(fileToUpload).continue()
-      UploadingPage(platformOperatorOne).waitUntilFinish()
+      UploadingPage(platformOperatorOne).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorOne).continue()
       SubmissionConfirmationPage(platformOperatorOne).selectNo().continue()
 
