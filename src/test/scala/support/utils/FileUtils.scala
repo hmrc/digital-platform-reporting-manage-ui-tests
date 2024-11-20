@@ -17,14 +17,14 @@
 package support.utils
 
 import java.io.PrintStream
-import scala.io.{Codec, Source}
+import java.nio.file.Paths
+import scala.io.Source
 
 object FileUtils {
 
   def fileToUploadFrom(template: String, platformOperatorId: String): String = {
-    val filePath       = getClass.getResource(template).getPath
-    val inputStream    = Source.fromFile(filePath)(Codec.UTF8)
-    val outputLines    = inputStream.getLines()
+    val filePath       = Paths.get(getClass.getClassLoader.getResource(template).toURI).toFile.getAbsolutePath
+    val outputLines    = Source.fromResource(template).getLines()
     val resultFileName = filePath.replace("Template.xml", s"-$platformOperatorId.xml")
 
     new PrintStream(resultFileName) {
