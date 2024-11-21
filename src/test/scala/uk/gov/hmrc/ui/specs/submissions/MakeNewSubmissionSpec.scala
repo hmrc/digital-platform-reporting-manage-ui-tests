@@ -104,7 +104,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
-      val fileToUpload = fileToUploadFrom("SubmissionSampleTemplate.xml", platformOperatorId)
+      val fileToUpload = fileToUploadFrom("SubmissionTemplate.xml", platformOperatorId)
       UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
@@ -149,12 +149,36 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
 
       When("File with unknown platform operator id is uploaded")
       UploadFailedPage(platformOperatorId)
-        .withFileToUpload(fileToUploadFrom("SubmissionSampleTemplate.xml", "unknown-po-id"))
+        .withFileToUpload(fileToUploadFrom("SubmissionTemplate.xml", "unknown-po-id"))
         .continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("Error should be shown")
       UploadFailedPage(platformOperatorId).assertContainsError("The Platform Operator IDs do not match")
+    }
+
+    Scenario("Single Platform Operator with failed submission") {
+      Given("Newly subscribed user with platform operator and reporting notification")
+      SubscriptionSteps.newlySubscribedOrganisation()
+      val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
+      ReportingNotificationSteps.addReportingNotificationFor(platformOperatorId)
+
+      When("File that fails submission is submitted")
+      indexPage.clickMakeXmlSubmission()
+      selectPlatformOperatorPage.continue()
+      StartPage(platformOperatorId).continue()
+      CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
+      CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
+      CheckContactDetailsPage(platformOperatorId).selectYes().continue()
+      val fileToUpload = fileToUploadFrom("FailedSubmissionTemplate.xml", platformOperatorId)
+      UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
+      SendFilePage(platformOperatorId).continue()
+      CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
+
+      Then("The result page should be 'There is a problem with your file'")
+      resultPage.url       should include("/file-errors")
+      resultPage.heading shouldBe "There is a problem with your file"
     }
 
     Scenario("Multiple Platform Operators with correct data") {
@@ -172,7 +196,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorOne).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorOne).selectYes().continue()
       CheckContactDetailsPage(platformOperatorOne).selectYes().continue()
-      val fileToUpload = fileToUploadFrom("SubmissionSampleTemplate.xml", platformOperatorOne)
+      val fileToUpload = fileToUploadFrom("SubmissionTemplate.xml", platformOperatorOne)
       UploadPage(platformOperatorOne).withFileToUpload(fileToUpload).continue()
       UploadingPage(platformOperatorOne).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorOne).continue()
