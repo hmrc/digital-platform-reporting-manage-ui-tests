@@ -109,7 +109,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
       CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
-      SubmissionConfirmationPage(platformOperatorId).selectNo().continue()
+      SubmissionConfirmationPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")
@@ -176,7 +176,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadPage(platformOperatorOne).withFileToUpload(fileToUpload).continue()
       UploadingPage(platformOperatorOne).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorOne).continue()
-      SubmissionConfirmationPage(platformOperatorOne).selectNo().continue()
+      SubmissionConfirmationPage(platformOperatorOne).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
       resultPage.url       should include("/manage-reporting")

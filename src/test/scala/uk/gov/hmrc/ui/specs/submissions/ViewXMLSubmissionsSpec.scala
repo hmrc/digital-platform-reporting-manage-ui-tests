@@ -47,7 +47,7 @@ class ViewXMLSubmissionsSpec extends SubmissionBaseSpec {
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
       CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
-      SubmissionConfirmationPage(platformOperatorId).selectNo().continue()
+      SubmissionConfirmationPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
       indexPage.clickViewXmlSubmissions()
 
       Then("The result page should be 'XML submissions'")
