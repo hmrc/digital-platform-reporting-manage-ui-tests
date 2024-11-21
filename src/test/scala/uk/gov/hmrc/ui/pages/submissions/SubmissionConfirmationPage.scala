@@ -16,10 +16,12 @@
 
 package uk.gov.hmrc.ui.pages.submissions
 
-import support.helpers.YesNoRadioGroup
 import support.utils.RegexUtils.UuidRegExString
 import uk.gov.hmrc.ui.pages.SubmissionBasePage
 
 case class SubmissionConfirmationPage(platformOperatorId: String)
-    extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/confirmation")
-    with YesNoRadioGroup
+    extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/confirmation") {
+
+  def clickManageYourDigitalPlatformReporting(): Unit =
+    click("a[href*='http://localhost:20006/digital-platform-reporting/manage-reporting']")
+}
