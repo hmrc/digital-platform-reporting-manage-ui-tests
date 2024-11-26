@@ -20,7 +20,7 @@ import support.ManageBaseSpec
 import support.builders.EnrolmentsDataBuilder.anEnrolmentsData
 import support.builders.UserCredentialsBuilder.aUserCredentials
 import support.models.auth.{Individual, Organisation, User}
-import uk.gov.hmrc.ui.pages.{AuthLoginStubPage, ResultPage}
+import support.pages.{AuthLoginStubPage, ResultPage}
 
 class UserAuthenticationSpec extends ManageBaseSpec {
 

@@ -16,7 +16,7 @@
 
 package support.helpers
 
-import uk.gov.hmrc.ui.pages.BasePage
+import support.pages.BasePage
 
 trait YesNoRadioGroup { this: BasePage =>
 

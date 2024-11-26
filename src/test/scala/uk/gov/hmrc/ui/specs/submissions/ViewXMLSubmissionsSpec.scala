@@ -17,10 +17,10 @@
 package uk.gov.hmrc.ui.specs.submissions
 
 import support.SubmissionBaseSpec
+import support.pages.submissions._
+import support.pages.{IndexPage, ResultPage}
 import support.steps.{PlatformOperatorSteps, ReportingNotificationSteps, SubscriptionSteps}
 import support.utils.FileUtils.fileToUploadFrom
-import uk.gov.hmrc.ui.pages.submissions._
-import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
 class ViewXMLSubmissionsSpec extends SubmissionBaseSpec {
 

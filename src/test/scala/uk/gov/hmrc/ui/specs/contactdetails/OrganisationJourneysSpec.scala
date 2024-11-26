@@ -17,9 +17,9 @@
 package uk.gov.hmrc.ui.specs.contactdetails
 
 import support.ManageBaseSpec
+import support.pages.contactdetails.organisation._
+import support.pages.{IndexPage, ResultPage}
 import support.steps.SubscriptionSteps
-import uk.gov.hmrc.ui.pages.contactdetails.organisation._
-import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
 class OrganisationJourneysSpec extends ManageBaseSpec {
 

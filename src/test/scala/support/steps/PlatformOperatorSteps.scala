@@ -16,10 +16,10 @@
 
 package support.steps
 
+import support.pages.IndexPage
+import support.pages.platformoperators.add._
+import support.pages.platformoperators.{PlatformOperatorsPage, StartPage}
 import uk.gov.hmrc.selenium.component.PageObject
-import uk.gov.hmrc.ui.pages.IndexPage
-import uk.gov.hmrc.ui.pages.platformoperators.add._
-import uk.gov.hmrc.ui.pages.platformoperators.{PlatformOperatorsPage, StartPage}
 
 object PlatformOperatorSteps extends PageObject {
 

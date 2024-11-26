@@ -17,9 +17,9 @@
 package uk.gov.hmrc.ui.specs.reportingnotifications
 
 import support.OperatorBaseSpec
+import support.pages.reportingnotifications._
+import support.pages.{IndexPage, ResultPage}
 import support.steps.{PlatformOperatorSteps, SubscriptionSteps}
-import uk.gov.hmrc.ui.pages.reportingnotifications._
-import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
 class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
 
