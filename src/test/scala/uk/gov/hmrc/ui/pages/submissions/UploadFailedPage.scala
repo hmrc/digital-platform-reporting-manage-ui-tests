@@ -18,6 +18,7 @@ package uk.gov.hmrc.ui.pages.submissions
 
 import org.openqa.selenium.By
 import support.utils.RegexUtils.UuidRegExString
+import uk.gov.hmrc.ui.pages.ResultPage.getText
 import uk.gov.hmrc.ui.pages.SubmissionBasePage
 
 case class UploadFailedPage(platformOperatorId: String)
