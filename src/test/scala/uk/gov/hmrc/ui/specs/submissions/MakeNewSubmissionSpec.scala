@@ -144,11 +144,12 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
         .continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
-      Then("Error should be shown")
-      UploadFailedPage(platformOperatorId).assertContainsError("The selected file does not match the schema")
+      Then("'There is a problem with the data in your file' page should be shown")
+      UploadFailedPage(platformOperatorId).heading shouldBe "There is a problem with the data in your file"
 
       When("File with unknown platform operator id is uploaded")
-      UploadFailedPage(platformOperatorId)
+      UploadFailedPage(platformOperatorId).clickUploadDifferentFile()
+      UploadPage(platformOperatorId)
         .withFileToUpload(fileToUploadFrom("SubmissionTemplate.xml", "unknown-po-id"))
         .continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
