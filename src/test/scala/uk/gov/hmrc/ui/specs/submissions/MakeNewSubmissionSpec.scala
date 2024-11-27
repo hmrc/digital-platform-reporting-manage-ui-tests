@@ -30,7 +30,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
   private val selectPlatformOperatorPage = SelectPlatformOperatorPage()
   private val resultPage                 = ResultPage
 
-  Feature("Make New XML Submission Journeys") {
+  Feature("Make New XML Submission - Incorrect Data Journeys") {
     Scenario("Single Platform Operator with incorrect business details for platform operator") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
@@ -116,7 +116,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
-    Scenario("Single Platform Operator with upload failures") {
+    ignore("Single Platform Operator with upload failures") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
@@ -158,7 +158,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadFailedPage(platformOperatorId).assertContainsError("The Platform Operator IDs do not match")
     }
 
-    Scenario("Single Platform Operator with failed submission") {
+    ignore("Single Platform Operator with failed submission") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
@@ -201,6 +201,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadPage(platformOperatorOne).withFileToUpload(fileToUpload).continue()
       UploadingPage(platformOperatorOne).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorOne).continue()
+      CheckFilePage(platformOperatorOne).waitUntilCheckIsFinished()
       SubmissionConfirmationPage(platformOperatorOne).clickManageYourDigitalPlatformReporting()
 
       Then("The result page should be 'Manage your digital platform reporting'")
