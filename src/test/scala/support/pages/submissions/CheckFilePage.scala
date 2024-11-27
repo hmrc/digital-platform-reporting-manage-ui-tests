@@ -16,6 +16,7 @@
 
 package support.pages.submissions
 
+import org.openqa.selenium.By
 import support.pages.SubmissionBasePage
 import support.utils.RegexUtils.UuidRegExString
 
@@ -24,5 +25,5 @@ case class CheckFilePage(platformOperatorId: String)
 
   def waitUntilCheckIsFinished(): Unit =
     while (getCurrentUrl.contains("/check-file") && elementExists(s".govuk-button"))
-      continue()
+      click(By.cssSelector(".govuk-button"))
 }

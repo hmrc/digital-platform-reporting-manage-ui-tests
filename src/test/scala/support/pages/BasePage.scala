@@ -16,10 +16,12 @@
 
 package support.pages
 
-import org.openqa.selenium.By
+import org.openqa.selenium.{By, WebDriver}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
+import java.time.Duration
 import scala.util.Try
 
 abstract class BasePage(relativeUrl: String) extends PageObject {
@@ -30,6 +32,7 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
   def continue(): Unit = {
     assertUrl(url)
     click(By.cssSelector(".govuk-button"))
+    fluentWait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)))
   }
 
   def clickBack(): Unit = click(By.cssSelector("a.govuk-back-link"))
@@ -56,4 +59,8 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
 
   protected def assertUrl(url: String): Unit =
     assert(getCurrentUrl matches url, s"Url was: $getCurrentUrl, but expected is $url")
+
+  protected def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(3))
+    .pollingEvery(Duration.ofSeconds(1))
 }

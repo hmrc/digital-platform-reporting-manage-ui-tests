@@ -16,13 +16,9 @@
 
 package support.pages.submissions
 
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
+import org.openqa.selenium.support.ui.ExpectedConditions
 import support.pages.SubmissionBasePage
 import support.utils.RegexUtils.UuidRegExString
-import uk.gov.hmrc.selenium.webdriver.Driver
-
-import java.time.Duration
 
 case class UploadingPage(platformOperatorId: String)
     extends SubmissionBasePage(s"/submission/$platformOperatorId/$UuidRegExString/uploading") {
@@ -32,8 +28,4 @@ case class UploadingPage(platformOperatorId: String)
     if (currentUrl.contains("/uploading"))
       fluentWait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(currentUrl)))
   }
-
-  private def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(3))
-    .pollingEvery(Duration.ofSeconds(1))
 }
