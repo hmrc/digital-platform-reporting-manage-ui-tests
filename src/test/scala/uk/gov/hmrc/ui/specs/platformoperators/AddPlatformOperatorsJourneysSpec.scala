@@ -17,10 +17,10 @@
 package uk.gov.hmrc.ui.specs.platformoperators
 
 import support.OperatorBaseSpec
+import support.pages.platformoperators._
+import support.pages.platformoperators.add._
+import support.pages.{IndexPage, ResultPage}
 import support.steps.SubscriptionSteps
-import uk.gov.hmrc.ui.pages.platformoperators._
-import uk.gov.hmrc.ui.pages.platformoperators.add._
-import uk.gov.hmrc.ui.pages.{IndexPage, ResultPage}
 
 class AddPlatformOperatorsJourneysSpec extends OperatorBaseSpec {
 

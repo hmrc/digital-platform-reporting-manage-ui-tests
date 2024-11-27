@@ -16,8 +16,8 @@
 
 package support.steps
 
-import uk.gov.hmrc.ui.pages.IndexPage
-import uk.gov.hmrc.ui.pages.reportingnotifications._
+import support.pages.IndexPage
+import support.pages.reportingnotifications._
 
 object ReportingNotificationSteps {
 

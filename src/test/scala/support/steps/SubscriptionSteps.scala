@@ -20,9 +20,9 @@ import support.builders.EnrolmentsDataBuilder.anEnrolmentsData
 import support.builders.UserCredentialsBuilder.{anIndividualUser, anOrganisationUser}
 import support.models._
 import support.models.auth.EnrolmentsData
+import support.pages.AuthLoginStubPage
 import support.repositories.SubscriptionRepository
 import uk.gov.hmrc.selenium.component.PageObject
-import uk.gov.hmrc.ui.pages.AuthLoginStubPage
 
 import java.time.Instant
 
