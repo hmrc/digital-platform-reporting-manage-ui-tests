@@ -24,4 +24,7 @@ case class SubmissionConfirmationPage(platformOperatorId: String)
 
   def clickManageYourDigitalPlatformReporting(): Unit =
     click("a[href*='http://localhost:20006/digital-platform-reporting/manage-reporting']")
+
+  def clickSubmitAnotherReport(): Unit =
+    click(s"a[href*='/digital-platform-reporting/submission/$platformOperatorId/start-page']")
 }
