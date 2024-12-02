@@ -91,13 +91,13 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
-    Scenario("Single Platform Operator with correct data") {
+    Scenario("Single Platform Operator with correct data and multiple submissions") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
       ReportingNotificationSteps.addReportingNotificationFor(platformOperatorId)
 
-      When("An XML is submitted")
+      When("Multiple submissions are performed")
       indexPage.clickMakeXmlSubmission()
       selectPlatformOperatorPage.continue()
       StartPage(platformOperatorId).continue()
@@ -105,6 +105,12 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
       val fileToUpload = fileToUploadFrom("SubmissionTemplate.xml", platformOperatorId)
+      UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
+      SendFilePage(platformOperatorId).continue()
+      CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
+      SubmissionConfirmationPage(platformOperatorId).clickSubmitAnotherReport()
+      StartPage(platformOperatorId).continue()
       UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()

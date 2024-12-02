@@ -47,6 +47,11 @@ To run tests in relation to Operator FE, you can use:
 ./run_operator_tests.sh dev firefox true
 ```
 
+To run tests in relation to Submission FE, you can use:
+```bash
+./run_submission_tests.sh dev firefox true
+```
+
 The above command has default values and if no parameters are passed the default values are: local, chrome and false.
 
 
