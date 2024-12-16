@@ -35,4 +35,10 @@ case class IndexPage() extends ManageBasePage("/manage-reporting") {
 
   def clickViewXmlSubmissions(): Unit =
     click(s"a[href*='$submissionBaseSpec/submission/view']")
+
+  def clickMakeManualAssumedReport(): Unit =
+    click(s"a[href*='$submissionBaseSpec/assumed-reporting/which-platform-operator']")
+
+  def clickViewManualAssumedReport(): Unit =
+    click(s"a[href*='$submissionBaseSpec/assumed-reporting/view']")
 }
