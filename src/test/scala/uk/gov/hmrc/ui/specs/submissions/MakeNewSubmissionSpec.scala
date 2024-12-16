@@ -135,9 +135,9 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadPage(platformOperatorId).withFileToUpload(nonXMLFile).continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
-      Then("The result page should be 'There is a problem with the formatting of your file'")
+      Then("The result page should be 'There is a problem with the contents of your file'")
       resultPage.url       should include("/upload-failed")
-      resultPage.heading shouldBe "There is a problem with the formatting of your file"
+      resultPage.heading shouldBe "There is a problem with the contents of your file"
 
       When("File with invalid schema is uploaded")
       UploadFailedPage(platformOperatorId).clickUploadDifferentFile()
@@ -146,8 +146,8 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
         .continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
-      Then("'There is a problem with the data in your file' page should be shown")
-      UploadFailedPage(platformOperatorId).heading shouldBe "There is a problem with the data in your file"
+      Then("'There is a problem with the contents of your file' page should be shown")
+      UploadFailedPage(platformOperatorId).heading shouldBe "There is a problem with the contents of your file"
 
       When("File with unknown platform operator id is uploaded")
       UploadFailedPage(platformOperatorId).clickUploadDifferentFile()
