@@ -116,7 +116,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
-    ignore("Single Platform Operator with upload failures") {
+    Scenario("Single Platform Operator with upload failures") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
@@ -135,17 +135,19 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadPage(platformOperatorId).withFileToUpload(nonXMLFile).continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
-      Then("Error should be shown")
-      UploadFailedPage(platformOperatorId).assertContainsError("The selected file must be XML")
+      Then("The result page should be 'There is a problem with the contents of your file'")
+      resultPage.url       should include("/upload-failed")
+      resultPage.heading shouldBe "There is a problem with the contents of your file"
 
       When("File with invalid schema is uploaded")
-      UploadFailedPage(platformOperatorId)
+      UploadFailedPage(platformOperatorId).clickUploadDifferentFile()
+      UploadPage(platformOperatorId)
         .withFileToUpload(fileToUploadFrom("InvalidSchemaTemplate.xml", platformOperatorId))
         .continue()
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
-      Then("'There is a problem with the data in your file' page should be shown")
-      UploadFailedPage(platformOperatorId).heading shouldBe "There is a problem with the data in your file"
+      Then("'There is a problem with the contents of your file' page should be shown")
+      UploadFailedPage(platformOperatorId).heading shouldBe "There is a problem with the contents of your file"
 
       When("File with unknown platform operator id is uploaded")
       UploadFailedPage(platformOperatorId).clickUploadDifferentFile()
@@ -156,9 +158,19 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
 
       Then("Error should be shown")
       UploadFailedPage(platformOperatorId).assertContainsError("The Platform Operator IDs do not match")
+
+      When("File with incorrect file name extension is uploaded")
+      val invalidFileNameExtension =
+        Paths.get(getClass.getClassLoader.getResource("InvalidFileNameExtension.xls").toURI).toFile.getAbsolutePath
+      UploadFailedPage(platformOperatorId).withFileToUpload(invalidFileNameExtension).continue()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
+
+      Then("Error should be shown")
+      UploadFailedPage(platformOperatorId).assertContainsError("The selected file must be XML")
+
     }
 
-    ignore("Single Platform Operator with failed submission") {
+    Scenario("Single Platform Operator with failed submission") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
