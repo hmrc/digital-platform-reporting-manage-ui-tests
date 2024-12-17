@@ -16,9 +16,19 @@
 
 package support.pages.platformoperators.update
 
-import support.helpers.YesNoRadioGroup
+import org.openqa.selenium.By
 import support.pages.OperatorBasePage
 
-case class HasTaxIdentifierPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-have-tin")
-    with YesNoRadioGroup
+case class UkTaxIdentifiersPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-uk-tin-type") {
+
+  def selectUniqueTaxPayerReference(): Unit = click(By.cssSelector("#value_0"))
+
+  def selectCompanyRegistrationNumber(): Unit = click(By.cssSelector("#value_1"))
+
+  def selectVatRegistrationNumber(): Unit = click(By.cssSelector("#value_2"))
+
+  def selectEmployerPAYEReferenceNumber(): Unit = click(By.cssSelector("#value_3"))
+
+  def selectHmrcCharityReference(): Unit = click(By.cssSelector("#value_4"))
+}
