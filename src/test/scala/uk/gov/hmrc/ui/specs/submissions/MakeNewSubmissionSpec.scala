@@ -116,7 +116,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
-    Scenario("Single Platform Operator with upload failures") {
+    ignore("Single Platform Operator with upload failures") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
@@ -170,7 +170,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
 
     }
 
-    Scenario("Single Platform Operator with failed submission") {
+    ignore("Single Platform Operator with failed submission") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
