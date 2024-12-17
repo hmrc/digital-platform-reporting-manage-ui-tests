@@ -20,6 +20,7 @@ import support.OperatorBaseSpec
 import support.pages.platformoperators._
 import support.pages.platformoperators.add.{CanPhonePrimaryContactPage, PlatformOperatorAddedPage}
 import support.pages.{IndexPage, ResultPage}
+import support.steps.PlatformOperatorSteps.{ukTaxIdentifiersPage, utrPage}
 import support.steps.SubscriptionSteps
 
 class ViewAndChangePlatformOperatorDetailsJourneysSpec extends OperatorBaseSpec {
@@ -28,7 +29,8 @@ class ViewAndChangePlatformOperatorDetailsJourneysSpec extends OperatorBaseSpec 
   private val startPage                         = StartPage()
   private val addBusinessNamePage               = add.BusinessNamePage()
   private val addHasTradingNamePage             = add.HasTradingNamePage()
-  private val addHasTaxIdentifierPage           = add.HasTaxIdentifierPage()
+  private val ukTaxIdentifiersPage              = UkTaxIdentifiersPage()
+  private val utrPage                           = UtrPage()
   private val addRegisteredInUkPage             = add.RegisteredInUkPage()
   private val addInternationalAddressPage       = add.InternationalAddressPage()
   private val addPrimaryContactNamePage         = add.PrimaryContactNamePage()
@@ -50,7 +52,9 @@ class ViewAndChangePlatformOperatorDetailsJourneysSpec extends OperatorBaseSpec 
       startPage.continue()
       addBusinessNamePage.withName("The Simpsons Ltd.").continue()
       addHasTradingNamePage.selectNo().continue()
-      addHasTaxIdentifierPage.selectNo().continue()
+      ukTaxIdentifiersPage.selectUniqueTaxPayerReference()
+      ukTaxIdentifiersPage.continue()
+      utrPage.withUtr("1234567890").continue()
       addRegisteredInUkPage.selectNo().continue()
       addInternationalAddressPage
         .withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States")
@@ -75,11 +79,10 @@ class ViewAndChangePlatformOperatorDetailsJourneysSpec extends OperatorBaseSpec 
       updateCheckYourAnswers.clickTradeUnderDifferentName()
       update.HasTradingNamePage(platformOperatorId).selectYes().continue()
       update.TradingNamePage(platformOperatorId).withName("The Simpsons Ltd.").continue()
-      updateCheckYourAnswers.clickChangeHasTin()
-      update.HasTaxIdentifierPage(platformOperatorId).selectYes().continue()
-      update.TaxResidentInUkPage(platformOperatorId).selectNo().continue()
-      update.TaxResidencyCountryPage(platformOperatorId).withCountry("United States").continue()
-      update.InternationalTaxIdentifierPage(platformOperatorId).withTaxIdentificationNumber("1234").continue()
+      updateCheckYourAnswers.clickUkTaxIdentifiers()
+      update.UkTaxIdentifiersPage(platformOperatorId).selectVatRegistrationNumber()
+      update.UkTaxIdentifiersPage(platformOperatorId).continue()
+      update.VrnPage(platformOperatorId).withVatRegistrationNumber("GB123456789").continue()
       updateCheckYourAnswers.clickRegisteredInUk()
       update.RegisteredInUkPage(platformOperatorId).selectYes().continue()
       update.UkAddressPage(platformOperatorId).clickBack()

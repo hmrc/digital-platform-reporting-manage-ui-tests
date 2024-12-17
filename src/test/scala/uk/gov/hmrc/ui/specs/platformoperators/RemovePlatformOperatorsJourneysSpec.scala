@@ -20,6 +20,7 @@ import support.OperatorBaseSpec
 import support.pages.platformoperators._
 import support.pages.platformoperators.add._
 import support.pages.{IndexPage, ResultPage}
+import support.steps.PlatformOperatorSteps.{ukTaxIdentifiersPage, utrPage}
 import support.steps.SubscriptionSteps
 
 class RemovePlatformOperatorsJourneysSpec extends OperatorBaseSpec {
@@ -28,7 +29,8 @@ class RemovePlatformOperatorsJourneysSpec extends OperatorBaseSpec {
   private val startPage                      = StartPage()
   private val businessNamePage               = BusinessNamePage()
   private val hasTradingNamePage             = HasTradingNamePage()
-  private val hasTaxIdentifierPage           = HasTaxIdentifierPage()
+  private val ukTaxIdentifiersPage           = UkTaxIdentifiersPage()
+  private val utrPage                        = UtrPage()
   private val registeredInUkPage             = RegisteredInUkPage()
   private val internationalAddressPage       = InternationalAddressPage()
   private val primaryContactNamePage         = PrimaryContactNamePage()
@@ -50,7 +52,9 @@ class RemovePlatformOperatorsJourneysSpec extends OperatorBaseSpec {
       startPage.continue()
       businessNamePage.withName("The Simpsons Ltd.").continue()
       hasTradingNamePage.selectNo().continue()
-      hasTaxIdentifierPage.selectNo().continue()
+      ukTaxIdentifiersPage.selectUniqueTaxPayerReference()
+      ukTaxIdentifiersPage.continue()
+      utrPage.withUtr("1234567890").continue()
       registeredInUkPage.selectNo().continue()
       internationalAddressPage.withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States").continue()
       primaryContactNamePage.withName("Marge Simpson").continue()

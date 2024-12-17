@@ -14,11 +14,17 @@
  * limitations under the License.
  */
 
-package support.pages.platformoperators.add
+package support.pages.platformoperators.update
 
-import support.helpers.YesNoRadioGroup
+import org.openqa.selenium.By
 import support.pages.OperatorBasePage
 
-case class TaxResidentInUkPage()
-    extends OperatorBasePage("/platform-operator/add-platform-operator/tax-resident-in-uk")
-    with YesNoRadioGroup
+case class VrnPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-vrn") {
+
+  def withVatRegistrationNumber(vrn: String): VrnPage = {
+    assertUrl(url)
+    sendKeys(By.cssSelector("#value"), vrn)
+    this
+  }
+}
