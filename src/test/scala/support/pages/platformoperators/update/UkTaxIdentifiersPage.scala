@@ -19,12 +19,31 @@ package support.pages.platformoperators.update
 import org.openqa.selenium.By
 import support.pages.OperatorBasePage
 
-case class InternationalTaxIdentifierPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-international-tin") {
+case class UkTaxIdentifiersPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-uk-tin-type") {
 
-  def withTaxIdentificationNumber(tin: String): InternationalTaxIdentifierPage = {
-    assertUrl(url)
-    sendKeys(By.cssSelector("#value"), tin)
+  def selectUniqueTaxPayerReference(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_0"))
+    this
+  }
+
+  def selectCompanyRegistrationNumber(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_1"))
+    this
+  }
+
+  def selectVatRegistrationNumber(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_2"))
+    this
+  }
+
+  def selectEmployerPAYEReferenceNumber(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_3"))
+    this
+  }
+
+  def selectHmrcCharityReference(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_4"))
     this
   }
 }

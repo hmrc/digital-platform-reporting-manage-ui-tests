@@ -18,7 +18,7 @@ package support.steps
 
 import support.pages.IndexPage
 import support.pages.platformoperators.add._
-import support.pages.platformoperators.{PlatformOperatorsPage, StartPage}
+import support.pages.platformoperators.{PlatformOperatorsPage, StartPage, UkTaxIdentifiersPage, UtrPage}
 import uk.gov.hmrc.selenium.component.PageObject
 
 object PlatformOperatorSteps extends PageObject {
@@ -28,7 +28,8 @@ object PlatformOperatorSteps extends PageObject {
   private val businessNamePage                 = BusinessNamePage()
   private val hasTradingNamePage               = HasTradingNamePage()
   private val tradingNamePage                  = TradingNamePage()
-  private val hasTaxIdentifierPage             = HasTaxIdentifierPage()
+  private val ukTaxIdentifiersPage             = UkTaxIdentifiersPage()
+  private val utrPage                          = UtrPage()
   private val registeredInUkPage               = RegisteredInUkPage()
   private val internationalAddressPage         = InternationalAddressPage()
   private val primaryContactNamePage           = PrimaryContactNamePage()
@@ -50,10 +51,11 @@ object PlatformOperatorSteps extends PageObject {
     startPage.continue()
     businessNamePage.withName(platformOperator).continue()
     hasTradingNamePage.selectNo().continue()
-    hasTaxIdentifierPage.clickBack()
+    ukTaxIdentifiersPage.clickBack()
     hasTradingNamePage.selectYes().continue()
     tradingNamePage.withName(s"The $platformOperator").continue()
-    hasTaxIdentifierPage.selectNo().continue()
+    ukTaxIdentifiersPage.selectUniqueTaxPayerReference().continue()
+    utrPage.withUtr("1234567890").continue()
     registeredInUkPage.selectNo().continue()
     internationalAddressPage.withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States").continue()
     primaryContactNamePage.withName("Marge Simpson").continue()

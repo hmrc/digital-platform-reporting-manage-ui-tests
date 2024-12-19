@@ -27,8 +27,8 @@ case class CheckYourAnswersPage(platformOperatorId: String)
   def clickTradeUnderDifferentName(): Unit =
     click(s"a[href*='/digital-platform-reporting/platform-operator/$platformOperatorId/change-have-trading-name']")
 
-  def clickChangeHasTin(): Unit =
-    click(s"a[href*='/digital-platform-reporting/platform-operator/$platformOperatorId/change-have-tin']")
+  def clickUkTaxIdentifiers(): Unit =
+    click(s"a[href*='/digital-platform-reporting/platform-operator/$platformOperatorId/change-uk-tin-type']")
 
   def clickRegisteredInUk(): Unit = click(
     s"a[href*='/digital-platform-reporting/platform-operator/$platformOperatorId/change-registered-address-in-uk']"

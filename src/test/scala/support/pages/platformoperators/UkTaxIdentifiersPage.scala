@@ -21,13 +21,28 @@ import support.pages.OperatorBasePage
 
 case class UkTaxIdentifiersPage() extends OperatorBasePage("/platform-operator/add-platform-operator/uk-tin-type") {
 
-  def selectUniqueTaxPayerReference(): Unit = click(By.cssSelector("#value_0"))
+  def selectUniqueTaxPayerReference(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_0"))
+    this
+  }
 
-  def selectCompanyRegistrationNumber(): Unit = click(By.cssSelector("#value_1"))
+  def selectCompanyRegistrationNumber(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_1"))
+    this
+  }
 
-  def selectVatRegistrationNumber(): Unit = click(By.cssSelector("#value_2"))
+  def selectVatRegistrationNumber(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_2"))
+    this
+  }
 
-  def selectEmployerPAYEReferenceNumber(): Unit = click(By.cssSelector("#value_3"))
+  def selectEmployerPAYEReferenceNumber(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_3"))
+    this
+  }
 
-  def selectHmrcCharityReference(): Unit = click(By.cssSelector("#value_4"))
+  def selectHmrcCharityReference(): UkTaxIdentifiersPage = {
+    click(By.cssSelector("#value_4"))
+    this
+  }
 }
