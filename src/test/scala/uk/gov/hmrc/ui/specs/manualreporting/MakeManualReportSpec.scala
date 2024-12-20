@@ -195,9 +195,6 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       indexPage.clickMakeManualAssumedReport()
       support.pages.manualreporting.SelectPlatformOperatorPage().continue()
       support.pages.manualreporting.StartPage(platformOperatorId).continue()
-      support.pages.manualreporting.CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
-      support.pages.manualreporting.CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
-      support.pages.manualreporting.CheckContactDetailsPage(platformOperatorId).selectYes().continue()
       ReportablePeriodPage(platformOperatorId).withYear("2024").continue()
 
       Then("The result page should be 'There is a problem with the report you are trying to make'")
