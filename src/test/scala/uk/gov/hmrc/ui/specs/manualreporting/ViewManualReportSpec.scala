@@ -119,9 +119,9 @@ class ViewManualReportSpec extends SubmissionBaseSpec {
       ChangeUKTaxIdentifierPage(platformOperatorId, reportingPeriod).withTaxIdentificationNumber("TIN112236").continue()
       CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).continue()
 
-      Then("The result page should be 'Assumed reporting submission updated'")
+      Then("The result page should be 'Assumed reporting details successfully updated'")
       resultPage.url       should include(s"/assumed-reporting/$platformOperatorId/$reportingPeriod/update-confirmation-page")
-      resultPage.heading shouldBe "Assumed reporting submission updated"
+      resultPage.heading shouldBe "Assumed reporting details successfully updated"
     }
   }
 }
