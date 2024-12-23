@@ -53,9 +53,9 @@ class ViewManualReportSpec extends SubmissionBaseSpec {
       AssumedReportingSubmissionCreatedPage(platformOperatorId, "2024").clickManageYourDigitalPlatformReporting()
       indexPage.clickViewManualAssumedReport()
 
-      Then("The result page should be 'Assumed reports'")
+      Then("The result page should be 'Assumed reporting history'")
       resultPage.url       should include("/assumed-reporting/view")
-      resultPage.heading shouldBe "Assumed reports"
+      resultPage.heading shouldBe "Assumed reporting history"
     }
 
     Scenario("Single Platform Operator with correct data - Edit Manual Assumed Report") {

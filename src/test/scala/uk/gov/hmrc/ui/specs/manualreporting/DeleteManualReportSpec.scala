@@ -55,9 +55,9 @@ class DeleteManualReportSpec extends SubmissionBaseSpec {
       ViewAssumedReportsPage(platformOperatorId, "2024").clickDeleteAssumedReport()
       DeleteAssumedReportPage(platformOperatorId, "2024").selectYes().continue()
 
-      Then("The result page should be 'Assumed report has been successfully deleted'")
+      Then("The result page should be 'Assumed reporting details have been successfully deleted'")
       resultPage.url       should include(s"/assumed-reporting/$platformOperatorId/deleted/2024")
-      resultPage.heading shouldBe "Assumed report has been successfully deleted"
+      resultPage.heading shouldBe "Assumed reporting details have been successfully deleted"
     }
   }
 }
