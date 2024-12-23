@@ -53,9 +53,9 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       RegisteredAddressPage(platformOperatorId).withAddress("221B Baker Street").continue()
       CheckYourAnswersPage(platformOperatorId).continue()
 
-      Then("The result page should be 'Assumed reporting submission created'")
+      Then("The result page should be 'Assumed reporting details successfully submitted'")
       resultPage.url       should include("/confirmation-page")
-      resultPage.heading shouldBe "Assumed reporting submission created"
+      resultPage.heading shouldBe "Assumed reporting details successfully submitted"
     }
 
     Scenario("Single Platform Operator with correct data - Tax resident in the UK") {
@@ -82,9 +82,9 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       RegisteredAddressPage(platformOperatorId).withAddress("221B Baker Street").continue()
       CheckYourAnswersPage(platformOperatorId).continue()
 
-      Then("The result page should be 'Assumed reporting submission created'")
+      Then("The result page should be 'Assumed reporting details successfully submitted'")
       resultPage.url       should include("/confirmation-page")
-      resultPage.heading shouldBe "Assumed reporting submission created"
+      resultPage.heading shouldBe "Assumed reporting details successfully submitted"
     }
 
     Scenario("Single Platform Operator with incorrect business details for platform operator") {
@@ -179,9 +179,9 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       RegisteredAddressPage(platformOperatorOne).withAddress("221B Baker Street").continue()
       CheckYourAnswersPage(platformOperatorOne).continue()
 
-      Then("The result page should be 'Assumed reporting submission created'")
+      Then("The result page should be 'Assumed reporting details successfully submitted'")
       resultPage.url       should include("/confirmation-page")
-      resultPage.heading shouldBe "Assumed reporting submission created"
+      resultPage.heading shouldBe "Assumed reporting details successfully submitted"
     }
 
     Scenario("Single Platform Operator with correct data - XML already submitted for reporting period") {
@@ -197,9 +197,9 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       support.pages.manualreporting.StartPage(platformOperatorId).continue()
       ReportablePeriodPage(platformOperatorId).withYear("2024").continue()
 
-      Then("The result page should be 'There is a problem with the report you are trying to make'")
+      Then("The result page should be 'You have already told HMRC about this reportable period'")
       resultPage.url       should include(s"/assumed-reporting/$platformOperatorId/submissions-exist")
-      resultPage.heading shouldBe "There is a problem with the report you are trying to make"
+      resultPage.heading shouldBe "You have already told HMRC about this reportable period"
     }
   }
 }
