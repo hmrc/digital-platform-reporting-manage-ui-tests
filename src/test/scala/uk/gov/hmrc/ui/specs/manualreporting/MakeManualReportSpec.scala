@@ -87,7 +87,7 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Assumed reporting details successfully submitted"
     }
 
-    ignore("Single Platform Operator with incorrect business details for platform operator") {
+    Scenario("Single Platform Operator with incorrect business details for platform operator") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
@@ -106,7 +106,7 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
-    ignore("Single Platform Operator with incorrect reporting notification for platform operator") {
+    Scenario("Single Platform Operator with incorrect reporting notification for platform operator") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
@@ -128,7 +128,7 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
-    ignore("Single Platform Operator with incorrect contact details") {
+    Scenario("Single Platform Operator with incorrect contact details") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
