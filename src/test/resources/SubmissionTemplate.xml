@@ -13,7 +13,7 @@
     <dpi:Contact>a</dpi:Contact>
     <dpi:MessageRefId>a</dpi:MessageRefId>
     <dpi:MessageTypeIndic>DPI402</dpi:MessageTypeIndic>
-    <dpi:ReportingPeriod>2024-12-31</dpi:ReportingPeriod>
+    <dpi:ReportingPeriod>2025-12-31</dpi:ReportingPeriod>
     <dpi:Timestamp>2024-10-03T11:13:29.397Z</dpi:Timestamp>
   </dpi:MessageSpec>
   <dpi:DPIBody>

@@ -21,6 +21,8 @@ import support.pages.manualreporting._
 import support.pages.{IndexPage, ResultPage}
 import support.steps.{PlatformOperatorSteps, ReportingNotificationSteps, SubscriptionSteps}
 
+import java.time.Year
+
 class ViewManualReportSpec extends SubmissionBaseSpec {
 
   private val indexPage                  = IndexPage()
@@ -41,7 +43,7 @@ class ViewManualReportSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
-      ReportablePeriodPage(platformOperatorId).withYear("2024").continue()
+      ReportablePeriodPage(platformOperatorId).withYear(Year.now.toString).continue()
       AssumingOperatorNamePage(platformOperatorId).withName("Sherlock Holmes").continue()
       TaxResidentInUkPage(platformOperatorId).selectNo().continue()
       TaxResidencyCountryPage(platformOperatorId).withCountry("United States").continue()
@@ -50,7 +52,8 @@ class ViewManualReportSpec extends SubmissionBaseSpec {
       RegisteredAddressCountryPage(platformOperatorId).withCountry("United States").continue()
       RegisteredAddressPage(platformOperatorId).withAddress("221B Baker Street").continue()
       CheckYourAnswersPage(platformOperatorId).continue()
-      AssumedReportingSubmissionCreatedPage(platformOperatorId, "2024").clickManageYourDigitalPlatformReporting()
+      AssumedReportingSubmissionCreatedPage(platformOperatorId, Year.now.toString)
+        .clickManageYourDigitalPlatformReporting()
       indexPage.clickViewManualAssumedReport()
 
       Then("The result page should be 'Assumed reporting history'")
@@ -65,14 +68,13 @@ class ViewManualReportSpec extends SubmissionBaseSpec {
       ReportingNotificationSteps.addReportingNotificationFor(platformOperatorId)
 
       When("A manual assumed report is submitted and Viewed")
-      val reportingPeriod = "2024"
       indexPage.clickMakeManualAssumedReport()
       selectPlatformOperatorPage.continue()
       StartPage(platformOperatorId).continue()
       CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
-      ReportablePeriodPage(platformOperatorId).withYear(reportingPeriod).continue()
+      ReportablePeriodPage(platformOperatorId).withYear(Year.now.toString).continue()
       AssumingOperatorNamePage(platformOperatorId).withName("Sherlock Holmes").continue()
       TaxResidentInUkPage(platformOperatorId).selectNo().continue()
       TaxResidencyCountryPage(platformOperatorId).withCountry("United States").continue()
@@ -81,46 +83,50 @@ class ViewManualReportSpec extends SubmissionBaseSpec {
       RegisteredAddressCountryPage(platformOperatorId).withCountry("United States").continue()
       RegisteredAddressPage(platformOperatorId).withAddress("221B Baker Street").continue()
       CheckYourAnswersPage(platformOperatorId).continue()
-      AssumedReportingSubmissionCreatedPage(platformOperatorId, reportingPeriod)
+      AssumedReportingSubmissionCreatedPage(platformOperatorId, Year.now.toString)
         .clickManageYourDigitalPlatformReporting()
 
       indexPage.clickViewManualAssumedReport()
-      ViewAssumedReportsPage(platformOperatorId, reportingPeriod).clickEditAssumedReport()
+      ViewAssumedReportsPage(platformOperatorId, Year.now.toString).clickEditAssumedReport()
 
       And("Change assumed operator name is clicked")
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).clickChangeAssumingOperatorName()
-      ChangeAssumingOperatorNamePage(platformOperatorId, reportingPeriod).withName("Enola Holmes").continue()
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).clickChangeAssumingOperatorName()
+      ChangeAssumingOperatorNamePage(platformOperatorId, Year.now.toString).withName("Enola Holmes").continue()
 
       And("Change registered address is clicked")
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).clickChangeRegisteredAddress()
-      ChangeRegisteredAddressPage(platformOperatorId, reportingPeriod).withAddress("222B Baker Street").continue()
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).clickChangeRegisteredAddress()
+      ChangeRegisteredAddressPage(platformOperatorId, Year.now.toString).withAddress("222B Baker Street").continue()
 
       And("Change international TIN is clicked")
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).clickChangeInternationalTin()
-      ChangeInternationalTaxIdentifierPage(platformOperatorId, reportingPeriod)
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).clickChangeInternationalTin()
+      ChangeInternationalTaxIdentifierPage(platformOperatorId, Year.now.toString)
         .withTaxIdentificationNumber("TIN112234")
         .continue()
 
       And("Change has international TIN is clicked")
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).clickChangeHaveInternationalTin()
-      ChangeHasInternationalTaxIdentifierPage(platformOperatorId, reportingPeriod).selectNo().continue()
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).clickChangeHaveInternationalTin()
-      ChangeHasInternationalTaxIdentifierPage(platformOperatorId, reportingPeriod).selectYes().continue()
-      ChangeInternationalTaxIdentifierPage(platformOperatorId, reportingPeriod)
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).clickChangeHaveInternationalTin()
+      ChangeHasInternationalTaxIdentifierPage(platformOperatorId, Year.now.toString).selectNo().continue()
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).clickChangeHaveInternationalTin()
+      ChangeHasInternationalTaxIdentifierPage(platformOperatorId, Year.now.toString).selectYes().continue()
+      ChangeInternationalTaxIdentifierPage(platformOperatorId, Year.now.toString)
         .withTaxIdentificationNumber("TIN112235")
         .continue()
 
       And("Change tax resident in UK is clicked")
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).clickChangeTaxResidentInUK()
-      ChangeTaxResidentInUkPage(platformOperatorId, reportingPeriod).selectNo().continue()
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).clickChangeTaxResidentInUK()
-      ChangeTaxResidentInUkPage(platformOperatorId, reportingPeriod).selectYes().continue()
-      ChangeHasUKTaxIdentifierPage(platformOperatorId, reportingPeriod).selectYes().continue()
-      ChangeUKTaxIdentifierPage(platformOperatorId, reportingPeriod).withTaxIdentificationNumber("TIN112236").continue()
-      CheckYourAnswersAssumedReportPage(platformOperatorId, reportingPeriod).continue()
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).clickChangeTaxResidentInUK()
+      ChangeTaxResidentInUkPage(platformOperatorId, Year.now.toString).selectNo().continue()
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).clickChangeTaxResidentInUK()
+      ChangeTaxResidentInUkPage(platformOperatorId, Year.now.toString).selectYes().continue()
+      ChangeHasUKTaxIdentifierPage(platformOperatorId, Year.now.toString).selectYes().continue()
+      ChangeUKTaxIdentifierPage(platformOperatorId, Year.now.toString)
+        .withTaxIdentificationNumber("TIN112236")
+        .continue()
+      CheckYourAnswersAssumedReportPage(platformOperatorId, Year.now.toString).continue()
 
       Then("The result page should be 'Assumed reporting details successfully updated'")
-      resultPage.url       should include(s"/assumed-reporting/$platformOperatorId/$reportingPeriod/update-confirmation-page")
+      resultPage.url       should include(
+        s"/assumed-reporting/$platformOperatorId/${Year.now.toString}/update-confirmation-page"
+      )
       resultPage.heading shouldBe "Assumed reporting details successfully updated"
     }
   }

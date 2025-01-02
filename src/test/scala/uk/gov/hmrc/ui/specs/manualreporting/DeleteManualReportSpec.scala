@@ -21,6 +21,8 @@ import support.pages.manualreporting._
 import support.pages.{IndexPage, ResultPage}
 import support.steps.{PlatformOperatorSteps, ReportingNotificationSteps, SubscriptionSteps}
 
+import java.time.Year
+
 class DeleteManualReportSpec extends SubmissionBaseSpec {
 
   private val indexPage                  = IndexPage()
@@ -41,7 +43,7 @@ class DeleteManualReportSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
-      ReportablePeriodPage(platformOperatorId).withYear("2024").continue()
+      ReportablePeriodPage(platformOperatorId).withYear(Year.now.toString).continue()
       AssumingOperatorNamePage(platformOperatorId).withName("Sherlock Holmes").continue()
       TaxResidentInUkPage(platformOperatorId).selectNo().continue()
       TaxResidencyCountryPage(platformOperatorId).withCountry("United States").continue()
@@ -50,13 +52,14 @@ class DeleteManualReportSpec extends SubmissionBaseSpec {
       RegisteredAddressCountryPage(platformOperatorId).withCountry("United States").continue()
       RegisteredAddressPage(platformOperatorId).withAddress("221B Baker Street").continue()
       CheckYourAnswersPage(platformOperatorId).continue()
-      AssumedReportingSubmissionCreatedPage(platformOperatorId, "2024").clickManageYourDigitalPlatformReporting()
+      AssumedReportingSubmissionCreatedPage(platformOperatorId, Year.now.toString)
+        .clickManageYourDigitalPlatformReporting()
       indexPage.clickViewManualAssumedReport()
-      ViewAssumedReportsPage(platformOperatorId, "2024").clickDeleteAssumedReport()
-      DeleteAssumedReportPage(platformOperatorId, "2024").selectYes().continue()
+      ViewAssumedReportsPage(platformOperatorId, Year.now.toString).clickDeleteAssumedReport()
+      DeleteAssumedReportPage(platformOperatorId, Year.now.toString).selectYes().continue()
 
       Then("The result page should be 'Assumed reporting details have been successfully deleted'")
-      resultPage.url       should include(s"/assumed-reporting/$platformOperatorId/deleted/2024")
+      resultPage.url       should include(s"/assumed-reporting/$platformOperatorId/deleted/${Year.now.toString}")
       resultPage.heading shouldBe "Assumed reporting details have been successfully deleted"
     }
   }
