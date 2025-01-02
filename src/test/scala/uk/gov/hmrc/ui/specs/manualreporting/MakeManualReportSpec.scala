@@ -21,6 +21,8 @@ import support.pages.manualreporting._
 import support.pages.{IndexPage, ResultPage}
 import support.steps.{PlatformOperatorSteps, ReportingNotificationSteps, SubscriptionSteps, XmlSubmissionsSteps}
 
+import java.time.Year
+
 class MakeManualReportSpec extends SubmissionBaseSpec {
 
   private val indexPage                  = IndexPage()
@@ -41,7 +43,7 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
-      ReportablePeriodPage(platformOperatorId).withYear("2024").continue()
+      ReportablePeriodPage(platformOperatorId).withYear(Year.now.toString).continue()
       AssumingOperatorNamePage(platformOperatorId).withName("Sherlock Holmes").continue()
       TaxResidentInUkPage(platformOperatorId).selectNo().continue()
       TaxResidencyCountryPage(platformOperatorId).withCountry("United States").continue()
@@ -71,7 +73,7 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorId).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorId).selectYes().continue()
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
-      ReportablePeriodPage(platformOperatorId).withYear("2024").continue()
+      ReportablePeriodPage(platformOperatorId).withYear(Year.now.toString).continue()
       AssumingOperatorNamePage(platformOperatorId).withName("Sherlock Holmes").continue()
       TaxResidentInUkPage(platformOperatorId).selectYes().continue()
       HasUKTaxIdentifierPage(platformOperatorId).selectNo().continue()
@@ -169,7 +171,7 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       CheckPlatformOperatorPage(platformOperatorOne).selectYes().continue()
       CheckReportingNotificationsPage(platformOperatorOne).selectYes().continue()
       CheckContactDetailsPage(platformOperatorOne).selectYes().continue()
-      ReportablePeriodPage(platformOperatorOne).withYear("2024").continue()
+      ReportablePeriodPage(platformOperatorOne).withYear(Year.now.toString).continue()
       AssumingOperatorNamePage(platformOperatorOne).withName("Sherlock Holmes").continue()
       TaxResidentInUkPage(platformOperatorOne).selectNo().continue()
       TaxResidencyCountryPage(platformOperatorOne).withCountry("United States").continue()
@@ -195,7 +197,7 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       indexPage.clickMakeManualAssumedReport()
       support.pages.manualreporting.SelectPlatformOperatorPage().continue()
       support.pages.manualreporting.StartPage(platformOperatorId).continue()
-      ReportablePeriodPage(platformOperatorId).withYear("2024").continue()
+      ReportablePeriodPage(platformOperatorId).withYear(Year.now.toString).continue()
 
       Then("The result page should be 'You have already told HMRC about this reportable period'")
       resultPage.url       should include(s"/assumed-reporting/$platformOperatorId/submissions-exist")

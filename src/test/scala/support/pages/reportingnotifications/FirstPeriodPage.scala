@@ -16,7 +16,15 @@
 
 package support.pages.reportingnotifications
 
+import org.openqa.selenium.By
 import support.pages.OperatorBasePage
 
 case class FirstPeriodPage(platformOperatorId: String)
-    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/first-period")
+    extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/first-period") {
+
+  def withPeriod(period: String): FirstPeriodPage = {
+    assertUrl(url)
+    sendKeys(By.cssSelector("#value"), period)
+    this
+  }
+}

@@ -21,6 +21,8 @@ import support.pages.reportingnotifications._
 import support.pages.{IndexPage, ResultPage}
 import support.steps.{PlatformOperatorSteps, SubscriptionSteps}
 
+import java.time.Year
+
 class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
 
   private val indexPage                 = IndexPage()
@@ -40,7 +42,7 @@ class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
-      FirstPeriodPage(platformOperatorId).continue()
+      FirstPeriodPage(platformOperatorId).withPeriod(Year.now.toString).continue()
       DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
       CheckYourAnswersPage(platformOperatorId).continue()
       SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
@@ -62,7 +64,7 @@ class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
-      FirstPeriodPage(platformOperatorId).continue()
+      FirstPeriodPage(platformOperatorId).withPeriod(Year.now.toString).continue()
       CheckYourAnswersPage(platformOperatorId).continue()
       SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
@@ -83,7 +85,7 @@ class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
-      FirstPeriodPage(platformOperatorId).continue()
+      FirstPeriodPage(platformOperatorId).withPeriod(Year.now.toString).continue()
       DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
       CheckYourAnswersPage(platformOperatorId).continue()
       SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
@@ -93,7 +95,7 @@ class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
       ViewPage(platformOperatorId).selectYes().continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
-      FirstPeriodPage(platformOperatorId).continue()
+      FirstPeriodPage(platformOperatorId).withPeriod(Year.now.toString).continue()
       CheckYourAnswersPage(platformOperatorId).continue()
       SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
@@ -124,7 +126,7 @@ class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
       whichPlatformOperatorPage.continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
-      FirstPeriodPage(platformOperatorId).continue()
+      FirstPeriodPage(platformOperatorId).withPeriod(Year.now.toString).continue()
       DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
       CheckYourAnswersPage(platformOperatorId).continue()
       SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
@@ -134,7 +136,7 @@ class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
       ViewPage(platformOperatorId).selectYes().continue()
       PlatformNotificationStartPage(platformOperatorId).continue()
       AddNotificationPage(platformOperatorId).selectExcludedPlatformOperator().continue()
-      FirstPeriodPage(platformOperatorId).continue()
+      FirstPeriodPage(platformOperatorId).withPeriod(Year.now.toString).continue()
       CheckYourAnswersPage(platformOperatorId).continue()
       SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
 
@@ -167,7 +169,7 @@ class AddAndViewReportingNotificationJourneysSpec extends OperatorBaseSpec {
       whichPlatformOperatorPage.withPlatformOperator("Simpsons Ltd.").continue()
       PlatformNotificationStartPage(platformOperatorId1).continue()
       AddNotificationPage(platformOperatorId1).selectExcludedPlatformOperator().continue()
-      FirstPeriodPage(platformOperatorId1).continue()
+      FirstPeriodPage(platformOperatorId1).withPeriod(Year.now.toString).continue()
       CheckYourAnswersPage(platformOperatorId1).continue()
       SuccessPage(platformOperatorId1).clickManageYourDigitalPlatformReporting()
 

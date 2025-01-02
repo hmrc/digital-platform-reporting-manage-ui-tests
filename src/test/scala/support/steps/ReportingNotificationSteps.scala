@@ -19,6 +19,8 @@ package support.steps
 import support.pages.IndexPage
 import support.pages.reportingnotifications._
 
+import java.time.Year
+
 object ReportingNotificationSteps {
 
   private val indexPage                 = IndexPage()
@@ -30,7 +32,7 @@ object ReportingNotificationSteps {
     whichPlatformOperatorPage.continue()
     PlatformNotificationStartPage(platformOperatorId).continue()
     AddNotificationPage(platformOperatorId).selectReportingPlatformOperator().continue()
-    FirstPeriodPage(platformOperatorId).continue()
+    FirstPeriodPage(platformOperatorId).withPeriod(Year.now.toString).continue()
     DueDiligencePage(platformOperatorId).selectExtendedTimeLimit().selectActiveSellerDue().continue()
     CheckYourAnswersPage(platformOperatorId).continue()
     SuccessPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
