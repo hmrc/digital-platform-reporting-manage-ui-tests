@@ -103,9 +103,9 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       And("Business details are incorrect")
       CheckPlatformOperatorPage(platformOperatorId).selectNo().continue()
 
-      Then("The result page should be 'Manage your digital platform reporting'")
-      resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your digital platform reporting"
+      Then("The result page should be 'Change your answers'")
+      resultPage.url       should include(s"platform-operator/$platformOperatorId/check-your-answers")
+      resultPage.heading shouldBe "Change your answers"
     }
 
     Scenario("Single Platform Operator with incorrect reporting notification for platform operator") {
@@ -125,9 +125,9 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
       And("Reporting notification details are incorrect")
       CheckReportingNotificationsPage(platformOperatorId).selectNo().continue()
 
-      Then("The result page should be 'Manage your digital platform reporting'")
-      resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your digital platform reporting"
+      Then("The result page should be View platform operator")
+      resultPage.url       should include(s"/reporting-notification/$platformOperatorId/view")
+      resultPage.heading shouldBe "You have added one reporting notification for Platform Operator One"
     }
 
     Scenario("Single Platform Operator with incorrect contact details") {
@@ -149,11 +149,10 @@ class MakeManualReportSpec extends SubmissionBaseSpec {
 
       And("Contact details are incorrect")
       CheckContactDetailsPage(platformOperatorId).selectNo().continue()
-      ViewContactDetailsPage().continue()
 
-      Then("The result page should be 'Manage your digital platform reporting'")
-      resultPage.url       should include("/manage-reporting")
-      resultPage.heading shouldBe "Manage your digital platform reporting"
+      Then("The result page should be 'Contact details'")
+      resultPage.url       should include("/contact-details/view-contact-details")
+      resultPage.heading shouldBe "Contact details"
     }
 
     Scenario("Multiple Platform Operators with correct data") {
