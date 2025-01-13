@@ -14,25 +14,18 @@
  * limitations under the License.
  */
 
-package support.pages.platformoperators
+package support.pages.manualreporting
 
-import org.openqa.selenium.By
-import support.pages.OperatorBasePage
+import support.pages.SubmissionBasePage
 
-case class PlatformOperatorsPage() extends OperatorBasePage("/platform-operator/view") {
+import java.time.Year
 
-  private val addNewCssSelector = "a[href*='/digital-platform-reporting/platform-operator/add-platform-operator/start']"
-
-  def clickAddNewPlatformOperator(): Unit = click(addNewCssSelector)
-
-  def clickView(index: Int): String = {
-    val operatorId = getText(By.cssSelector(".govuk-summary-list__value"))
-    click(s".govuk-summary-list__actions > a:nth-child($index)")
-    operatorId
-  }
-
-  def platformOperator: String = getText(By.cssSelector(".govuk-summary-list__value"))
+case class SubmissionConfirmationPage(platformOperatorId: String, year: Year)
+    extends SubmissionBasePage(s"/assumed-reporting/$platformOperatorId/${year.toString}/confirmation-page") {
 
   def clickManageYourDigitalPlatformReporting(): Unit =
     click("a[href*='http://localhost:20006/digital-platform-reporting/manage-reporting']")
+
+  def clickSubmitAnotherReport(): Unit =
+    click(s"a[href*='/digital-platform-reporting/submission/$platformOperatorId/start-page']")
 }

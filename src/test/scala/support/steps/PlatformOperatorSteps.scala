@@ -78,7 +78,7 @@ object PlatformOperatorSteps extends PageObject {
     platformOperatorAddedPage.clickManageYourDigitalPlatformReporting()
     indexPage.clickViewPlatformOperators()
     val platformOperatorId = platformOperatorsPage.platformOperator
-    platformOperatorsPage.goToManageOperator()
+    platformOperatorsPage.clickManageYourDigitalPlatformReporting()
     platformOperatorId
   }
 }

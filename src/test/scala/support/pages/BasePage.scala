@@ -16,8 +16,8 @@
 
 package support.pages
 
-import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait}
+import org.openqa.selenium.{By, WebDriver}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 
@@ -36,6 +36,11 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
   }
 
   def clickBack(): Unit = click(By.cssSelector("a.govuk-back-link"))
+
+  def assertContainsText(text: String): Unit = {
+    val bodyText = Driver.instance.findElement(By.tagName("body")).getText
+    assert(bodyText contains text)
+  }
 
   protected def selectOption(index: Int): Unit =
     click(By.cssSelector(s"#value_$index"))
