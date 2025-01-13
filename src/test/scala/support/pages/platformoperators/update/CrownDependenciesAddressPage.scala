@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-package support.pages.platformoperators.add
+package support.pages.platformoperators.update
 
 import org.openqa.selenium.By
 import support.pages.OperatorBasePage
 import uk.gov.hmrc.selenium.webdriver.Driver
 
-case class UkAddressPage() extends OperatorBasePage("/platform-operator/add-platform-operator/uk-address") {
+case class CrownDependenciesAddressPage(platformOperatorId: String)
+    extends OperatorBasePage(s"/platform-operator/$platformOperatorId/change-crown-dependencies-address") {
 
   def withAddress(
     addressLine1: String,
     townOrCity: String,
     postCode: String,
+    country: String,
     addressLine2: Option[String] = None,
     county: Option[String] = None,
     postalOrZipCode: Option[String] = None
-  ): UkAddressPage = {
+  ): CrownDependenciesAddressPage = {
     assertUrl(url)
     sendKeys(By.cssSelector("#line1"), addressLine1)
     addressLine2.foreach(value => sendKeys(By.cssSelector("#line2"), value))
@@ -37,6 +39,8 @@ case class UkAddressPage() extends OperatorBasePage("/platform-operator/add-plat
     sendKeys(By.cssSelector("#postCode"), postCode)
     county.foreach(value => sendKeys(By.cssSelector("#county"), value))
     postalOrZipCode.foreach(value => sendKeys(By.cssSelector("#postCode"), value))
+    sendKeys(By.cssSelector("#country"), country)
+    Driver.instance.findElement(By.cssSelector("#country__option--0")).click()
     this
   }
 }
