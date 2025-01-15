@@ -53,7 +53,7 @@ class RemovePlatformOperatorsJourneysSpec extends OperatorBaseSpec {
       hasTradingNamePage.selectNo().continue()
       ukTaxIdentifiersPage.selectUniqueTaxPayerReference().continue()
       utrPage.withUtr("1234567890").continue()
-      registeredInUkPage.selectNo().continue()
+      registeredInUkPage.selectInternational().continue()
       internationalAddressPage.withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States").continue()
       primaryContactNamePage.withName("Marge Simpson").continue()
       primaryContactEmailAddressPage.withEmail("marge.simpson@example.com").continue()

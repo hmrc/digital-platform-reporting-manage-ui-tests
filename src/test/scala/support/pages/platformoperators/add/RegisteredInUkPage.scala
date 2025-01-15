@@ -16,9 +16,24 @@
 
 package support.pages.platformoperators.add
 
-import support.helpers.YesNoRadioGroup
+import org.openqa.selenium.By
 import support.pages.OperatorBasePage
 
 case class RegisteredInUkPage()
-    extends OperatorBasePage("/platform-operator/add-platform-operator/registered-address-in-uk")
-    with YesNoRadioGroup
+    extends OperatorBasePage("/platform-operator/add-platform-operator/registered-address-in-uk") {
+
+  def selectUk(): RegisteredInUkPage = {
+    click(By.cssSelector("#value_0"))
+    this
+  }
+
+  def selectJerseyGuernseyIoM(): RegisteredInUkPage = {
+    click(By.cssSelector("#value_1"))
+    this
+  }
+
+  def selectInternational(): RegisteredInUkPage = {
+    click(By.cssSelector("#value_2"))
+    this
+  }
+}

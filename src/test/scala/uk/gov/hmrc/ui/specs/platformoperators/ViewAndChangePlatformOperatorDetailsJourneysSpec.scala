@@ -53,7 +53,7 @@ class ViewAndChangePlatformOperatorDetailsJourneysSpec extends OperatorBaseSpec 
       addHasTradingNamePage.selectNo().continue()
       ukTaxIdentifiersPage.selectUniqueTaxPayerReference().continue()
       utrPage.withUtr("1234567890").continue()
-      addRegisteredInUkPage.selectNo().continue()
+      addRegisteredInUkPage.selectInternational().continue()
       addInternationalAddressPage
         .withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States")
         .continue()
@@ -81,9 +81,11 @@ class ViewAndChangePlatformOperatorDetailsJourneysSpec extends OperatorBaseSpec 
       update.UkTaxIdentifiersPage(platformOperatorId).selectVatRegistrationNumber().continue()
       update.VrnPage(platformOperatorId).withVatRegistrationNumber("GB123456789").continue()
       updateCheckYourAnswers.clickRegisteredInUk()
-      update.RegisteredInUkPage(platformOperatorId).selectYes().continue()
+      update.RegisteredInUkPage(platformOperatorId).selectUk().continue()
       update.UkAddressPage(platformOperatorId).clickBack()
-      update.RegisteredInUkPage(platformOperatorId).selectNo().continue()
+      update.RegisteredInUkPage(platformOperatorId).selectJerseyGuernseyIoM().continue()
+      update.CrownDependenciesAddressPage(platformOperatorId).clickBack()
+      update.RegisteredInUkPage(platformOperatorId).selectInternational().continue()
       update
         .InternationalAddressPage(platformOperatorId)
         .withAddress("742 Evergreen Terrace", "Springfield", "90210", "United States")
