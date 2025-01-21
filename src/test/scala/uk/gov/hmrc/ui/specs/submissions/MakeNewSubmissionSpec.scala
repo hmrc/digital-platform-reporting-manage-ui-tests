@@ -122,7 +122,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       resultPage.heading shouldBe "Manage your digital platform reporting"
     }
 
-    ignore("Single Platform Operator with upload failures") {
+    Scenario("Single Platform Operator with upload failures") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
@@ -163,7 +163,9 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("Error should be shown")
-      UploadFailedPage(platformOperatorId).assertContainsError("The Platform Operator IDs do not match")
+      UploadFailedPage(platformOperatorId).assertContainsError(
+        "The platform operator ID in the file does not match the ID of the selected platform operator"
+      )
 
       When("File with incorrect file name extension is uploaded")
       val invalidFileNameExtension =
@@ -176,7 +178,7 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
 
     }
 
-    ignore("Single Platform Operator with failed submission") {
+    Scenario("Single Platform Operator with failed submission") {
       Given("Newly subscribed user with platform operator and reporting notification")
       SubscriptionSteps.newlySubscribedOrganisation()
       val platformOperatorId = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
