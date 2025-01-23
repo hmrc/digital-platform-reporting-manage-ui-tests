@@ -44,7 +44,6 @@ class ViewXMLSubmissionsSpec extends SubmissionBaseSpec {
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
       val fileToUpload = fileToUploadFrom("SubmissionTemplate.xml", platformOperatorId)
       UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
-      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
       CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
       SubmissionConfirmationPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
