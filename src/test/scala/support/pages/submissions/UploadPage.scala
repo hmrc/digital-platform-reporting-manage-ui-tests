@@ -17,7 +17,6 @@
 package support.pages.submissions
 
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.ExpectedConditions
 import support.pages.SubmissionBasePage
 import support.utils.RegexUtils.UuidRegExString
 
@@ -28,11 +27,4 @@ case class UploadPage(platformOperatorId: String)
     sendKeys(By.cssSelector("input[type=file]"), filePath)
     this
   }
-
-  def waitUntilFinishIfUploading(): Unit = {
-    val currentUrl = getCurrentUrl
-    if (currentUrl.endsWith("/upload"))
-      fluentWait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(currentUrl)))
-  }
-
 }

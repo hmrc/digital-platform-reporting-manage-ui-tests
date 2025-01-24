@@ -106,13 +106,11 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
       val fileToUpload = fileToUploadFrom("SubmissionTemplate.xml", platformOperatorId)
       UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
-      UploadPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
       CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
       SubmissionConfirmationPage(platformOperatorId).clickSubmitAnotherReport()
       StartPage(platformOperatorId).continue()
       UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
-      UploadPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
       CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
       SubmissionConfirmationPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
@@ -139,7 +137,6 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       And("Non XML file is uploaded")
       val nonXMLFile = Paths.get(getClass.getClassLoader.getResource("NotXml.xml").toURI).toFile.getAbsolutePath
       UploadPage(platformOperatorId).withFileToUpload(nonXMLFile).continue()
-      UploadPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("The result page should be 'There is a problem with the contents of your file'")
       resultPage.url       should include("/upload-failed")
@@ -150,7 +147,6 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadPage(platformOperatorId)
         .withFileToUpload(fileToUploadFrom("InvalidSchemaTemplate.xml", platformOperatorId))
         .continue()
-      UploadPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("'There is a problem with the contents of your file' page should be shown")
       UploadFailedPage(platformOperatorId).heading shouldBe "There is a problem with the contents of your file"
@@ -160,7 +156,6 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       UploadPage(platformOperatorId)
         .withFileToUpload(fileToUploadFrom("SubmissionTemplate.xml", "unknown-po-id"))
         .continue()
-      UploadPage(platformOperatorId).waitUntilFinishIfUploading()
 
       Then("Error should be shown")
       UploadFailedPage(platformOperatorId).assertContainsError(
@@ -192,7 +187,6 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckContactDetailsPage(platformOperatorId).selectYes().continue()
       val fileToUpload = fileToUploadFrom("FailedSubmissionTemplate.xml", platformOperatorId)
       UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
-      UploadPage(platformOperatorId).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorId).continue()
       CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
 
@@ -218,7 +212,6 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       CheckContactDetailsPage(platformOperatorOne).selectYes().continue()
       val fileToUpload = fileToUploadFrom("SubmissionTemplate.xml", platformOperatorOne)
       UploadPage(platformOperatorOne).withFileToUpload(fileToUpload).continue()
-      UploadPage(platformOperatorOne).waitUntilFinishIfUploading()
       SendFilePage(platformOperatorOne).continue()
       CheckFilePage(platformOperatorOne).waitUntilCheckIsFinished()
       SubmissionConfirmationPage(platformOperatorOne).clickManageYourDigitalPlatformReporting()
