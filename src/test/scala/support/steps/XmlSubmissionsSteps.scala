@@ -34,7 +34,7 @@ object XmlSubmissionsSteps {
     CheckContactDetailsPage(platformOperatorId).selectYes().continue()
     val fileToUpload = fileToUploadFrom("SubmissionTemplate.xml", platformOperatorId)
     UploadPage(platformOperatorId).withFileToUpload(fileToUpload).continue()
-    UploadPage(platformOperatorId).waitUntilFinishIfUploading()
+    UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
     SendFilePage(platformOperatorId).continue()
     CheckFilePage(platformOperatorId).waitUntilCheckIsFinished()
     SubmissionConfirmationPage(platformOperatorId).clickManageYourDigitalPlatformReporting()
