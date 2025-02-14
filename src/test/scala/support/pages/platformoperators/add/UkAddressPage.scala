@@ -18,7 +18,6 @@ package support.pages.platformoperators.add
 
 import org.openqa.selenium.By
 import support.pages.OperatorBasePage
-import uk.gov.hmrc.selenium.webdriver.Driver
 
 case class UkAddressPage() extends OperatorBasePage("/platform-operator/add-platform-operator/uk-address") {
 
