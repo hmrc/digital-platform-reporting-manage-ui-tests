@@ -1,8 +1,9 @@
-**This is the template README. Please update this with project specific content.**
-
 # digital-platform-reporting-manage-ui-tests
 
-<SERVICE_NAME> UI journey tests.
+This comprises of the following UI journey tests: 
+* digital-platform-reporting-operator-frontend UI journey tests
+* digital-platform-reporting-submission-frontend UI journey tests
+* digital-platform-reporting-manage-frontend UI journey tests
 
 ## Pre-requisites
 
@@ -14,7 +15,7 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:5.0
 ```
 
-Start `<SERVICE_MANAGER_PROFILE>` services as follows:
+Start `DPRS_ALL` services as follows:
 
 ```bash
 sm2 --start DPRS_ALL
@@ -24,35 +25,36 @@ sm2 --start DPRS_ALL
 
 Run tests as follows:
 
-* Argument `<environment>` must be `local`, `dev`, `qa` or `staging`.
 * Argument `<browser>` must be `chrome`, `edge`, or `firefox`.
 * Argument `<headless>` must be `true` or `false`.
 
+All test data are automatically generated or provided by the automation scripts and do not need to be provided on each run
+
 ```bash
-sbt clean -Denvironment="<environment>" -Dbrowser="<browser>" --Dbrowser.option.headless="<headless>" "testOnly uk.gov.hmrc.ui.specs.*" testReport
+sbt clean -Dbrowser="<browser>" --Dbrowser.option.headless="<headless>" "testOnly uk.gov.hmrc.ui.specs.*" testReport
 ```
 
 Alternatively, to run all tests, you can use:
 ```bash
-./run_tests.sh dev firefox true
+./run_tests.sh firefox true
 ```
 
 To run tests in relation to Manage FE, you can use:
 ```bash
-./run_manage_tests.sh dev firefox true
+./run_manage_tests.sh firefox true
 ```
 
 To run tests in relation to Operator FE, you can use:
 ```bash
-./run_operator_tests.sh dev firefox true
+./run_operator_tests.sh firefox true
 ```
 
 To run tests in relation to Submission FE, you can use:
 ```bash
-./run_submission_tests.sh dev firefox true
+./run_submission_tests.sh firefox true
 ```
 
-The above command has default values and if no parameters are passed the default values are: local, chrome and false.
+The above command has default values and if no parameters are passed the default values are: chrome and true.
 
 
 ## Scalafmt
