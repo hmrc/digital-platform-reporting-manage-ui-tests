@@ -31,7 +31,7 @@ Run tests as follows:
 All test data are automatically generated or provided by the automation scripts and do not need to be provided on each run
 
 ```bash
-sbt clean -Dbrowser="<browser>" --Dbrowser.option.headless="<headless>" "testOnly uk.gov.hmrc.ui.specs.*" testReport
+sbt clean -Dbrowser="<browser>" -Dbrowser.option.headless="<headless>" "testOnly uk.gov.hmrc.ui.specs.*" testReport
 ```
 
 Alternatively, to run all tests, you can use:
