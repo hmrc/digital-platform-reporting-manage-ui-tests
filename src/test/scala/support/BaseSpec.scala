@@ -29,8 +29,18 @@ trait BaseSpec
     with Browser
     with ScreenshotOnFailure {
 
-  override def beforeEach(): Unit =
+  override def beforeEach(): Unit ={
+    sys.props.get("browser") match {
+      case None => sys.props.addOne("browser" -> "chrome")
+      case _    =>
+    }
+
+    sys.props.get("browser.option.headless") match {
+      case None => sys.props.addOne("browser.option.headless" -> "false")
+      case _    =>
+    }
     startBrowser()
+  }
 
   override def afterEach(): Unit =
     quitBrowser()
