@@ -176,6 +176,24 @@ class MakeNewSubmissionSpec extends SubmissionBaseSpec {
       Then("Error should be shown")
       UploadFailedPage(platformOperatorId).assertContainsError("The selected file must be XML")
 
+      When("File with incorrect file name extension is uploaded")
+      val longFileName =
+        Paths
+          .get(
+            getClass.getClassLoader
+              .getResource(
+                "LongFileName1235678901234567890123456789012345678901234567890123456789012234567890LongFile1235678901234567890123456789012345678901234567890123456789012234567890LongFile12356789.xml"
+              )
+              .toURI
+          )
+          .toFile
+          .getAbsolutePath
+      UploadFailedPage(platformOperatorId).withFileToUpload(longFileName).continue()
+      UploadingPage(platformOperatorId).waitUntilFinishIfUploading()
+
+      Then("Error should be shown")
+      UploadFailedPage(platformOperatorId).assertContainsError("File name too long")
+
     }
 
     Scenario("Single Platform Operator with failed submission") {
