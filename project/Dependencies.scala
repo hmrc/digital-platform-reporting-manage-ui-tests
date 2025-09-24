@@ -9,6 +9,6 @@ object Dependencies {
     "uk.gov.hmrc"         %% "ui-test-runner"          % "0.49.0" % Test,
     "org.mongodb.scala"   %% "mongo-scala-driver"      % "5.4.0"  % Test,
     "com.typesafe.play"   %% "play-json"               % "2.10.6" % Test,
-    "uk.gov.hmrc.mongo"   %% "hmrc-mongo-test-play-30" % "2.6.0"  % Test
+    "uk.gov.hmrc.mongo"   %% "hmrc-mongo-test-play-30" % "2.7.0"  % Test
   )
 }
