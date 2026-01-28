@@ -16,9 +16,6 @@
 
 package support.pages.contactdetails.organisation
 
-import support.helpers.YesNoRadioGroup
 import support.pages.ManageBasePage
 
-case class CanPhonePrimaryContactPage()
-    extends ManageBasePage("/contact-details/change-first-contact/can-we-telephone")
-    with YesNoRadioGroup
+case class CanPhonePrimaryContactPage() extends ManageBasePage("/contact-details/change-first-contact/can-we-telephone")

@@ -16,9 +16,7 @@
 
 package support.pages.manualreporting
 
-import support.helpers.YesNoRadioGroup
 import support.pages.SubmissionBasePage
 
 case class HasUKTaxIdentifierPage(platformOperatorId: String)
     extends SubmissionBasePage(s"/assumed-reporting/$platformOperatorId/have-uk-tin")
-    with YesNoRadioGroup

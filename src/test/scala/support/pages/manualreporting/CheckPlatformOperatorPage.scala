@@ -16,9 +16,7 @@
 
 package support.pages.manualreporting
 
-import support.helpers.YesNoRadioGroup
 import support.pages.SubmissionBasePage
 
 case class CheckPlatformOperatorPage(platformOperatorId: String)
     extends SubmissionBasePage(s"/assumed-reporting/$platformOperatorId/check-platform-operator")
-    with YesNoRadioGroup

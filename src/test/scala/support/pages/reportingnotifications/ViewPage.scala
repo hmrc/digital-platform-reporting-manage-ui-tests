@@ -16,9 +16,7 @@
 
 package support.pages.reportingnotifications
 
-import support.helpers.YesNoRadioGroup
 import support.pages.OperatorBasePage
 
 case class ViewPage(platformOperatorId: String)
     extends OperatorBasePage(s"/reporting-notification/$platformOperatorId/view")
-    with YesNoRadioGroup

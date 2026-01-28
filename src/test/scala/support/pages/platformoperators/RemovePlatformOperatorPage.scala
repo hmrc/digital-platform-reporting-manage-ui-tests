@@ -16,9 +16,7 @@
 
 package support.pages.platformoperators
 
-import support.helpers.YesNoRadioGroup
 import support.pages.OperatorBasePage
 
 case class RemovePlatformOperatorPage(platformOperatorId: String)
     extends OperatorBasePage(s"/platform-operator/remove/$platformOperatorId/are-you-sure")
-    with YesNoRadioGroup

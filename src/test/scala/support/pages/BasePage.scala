@@ -39,7 +39,7 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
 
   def assertContainsText(text: String): Unit = {
     val bodyText = Driver.instance.findElement(By.tagName("body")).getText
-    assert(bodyText contains text)
+    assert(bodyText `contains` text)
   }
 
   protected def selectOption(index: Int): Unit =
@@ -51,8 +51,11 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
     this
   }
 
-  protected def selectYesNoOption(value: Boolean): Unit =
+  protected def selectYesNoOption(value: Boolean): BasePage = {
+    assertUrl(url)
     if (value) click(By.cssSelector("#value")) else click(By.cssSelector("#value-no"))
+    this
+  }
 
   protected def click(cssSelector: String): Unit = {
     assertUrl(url)
@@ -63,9 +66,14 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
     Try(Driver.instance.findElement(By.cssSelector(cssSelector))).isSuccess
 
   protected def assertUrl(url: String): Unit =
-    assert(getCurrentUrl matches url, s"Url was: $getCurrentUrl, but expected is $url")
+    assert(getCurrentUrl `matches` url, s"Url was: $getCurrentUrl, but expected is $url")
 
   protected def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(10))
     .pollingEvery(Duration.ofSeconds(1))
+
+  def selectYes(): BasePage = selectYesNoOption(true)
+
+  def selectNo(): BasePage = selectYesNoOption(false)
+
 }

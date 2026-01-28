@@ -29,7 +29,7 @@ case class UploadFailedPage(platformOperatorId: String)
   }
 
   def assertContainsError(error: String): UploadFailedPage = {
-    assert(getText(By.cssSelector(".govuk-error-summary__body")) contains error)
+    assert(getText(By.cssSelector(".govuk-error-summary__body")) `contains` error)
     this
   }
 

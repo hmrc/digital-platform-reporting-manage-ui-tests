@@ -16,9 +16,6 @@
 
 package support.pages.platformoperators.add
 
-import support.helpers.YesNoRadioGroup
 import support.pages.OperatorBasePage
 
-case class HasSecondaryContactPage()
-    extends OperatorBasePage("/platform-operator/add-platform-operator/second-contact")
-    with YesNoRadioGroup
+case class HasSecondaryContactPage() extends OperatorBasePage("/platform-operator/add-platform-operator/second-contact")

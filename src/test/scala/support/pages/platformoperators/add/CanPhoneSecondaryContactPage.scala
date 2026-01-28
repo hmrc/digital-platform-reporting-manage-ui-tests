@@ -16,9 +16,7 @@
 
 package support.pages.platformoperators.add
 
-import support.helpers.YesNoRadioGroup
 import support.pages.OperatorBasePage
 
 case class CanPhoneSecondaryContactPage()
     extends OperatorBasePage("/platform-operator/add-platform-operator/second-can-we-telephone")
-    with YesNoRadioGroup

@@ -26,6 +26,9 @@ import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.DurationInt
 import scala.language.postfixOps
+import org.mongodb.scala.SingleObservableFuture
+import org.mongodb.scala.documentToUntypedDocument
+import org.mongodb.scala.ObservableFuture
 
 object SubscriptionRepository {
 
