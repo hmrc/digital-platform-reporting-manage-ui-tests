@@ -16,9 +16,7 @@
 
 package support.pages.platformoperators.add
 
-import support.helpers.YesNoRadioGroup
 import support.pages.OperatorBasePage
 
 case class HasTradingNamePage()
     extends OperatorBasePage("/platform-operator/add-platform-operator/po-have-trading-name")
-    with YesNoRadioGroup

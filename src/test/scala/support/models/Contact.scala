@@ -30,8 +30,8 @@ object Contact {
     IndividualContact.format.widen or OrganisationContact.format.widen
 
   implicit lazy val writes: OWrites[Contact] = {
-    case ic: IndividualContact   => Json.toJsObject(ic)(IndividualContact.format)
-    case oc: OrganisationContact => Json.toJsObject(oc)(OrganisationContact.format)
+    case ic: IndividualContact   => Json.toJsObject(ic)(using IndividualContact.format)
+    case oc: OrganisationContact => Json.toJsObject(oc)(using OrganisationContact.format)
   }
 }
 
