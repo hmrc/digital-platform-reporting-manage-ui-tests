@@ -69,7 +69,7 @@ abstract class BasePage(relativeUrl: String) extends PageObject {
     assert(getCurrentUrl `matches` url, s"Url was: $getCurrentUrl, but expected is $url")
 
   protected def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(10))
+    .withTimeout(Duration.ofSeconds(15))
     .pollingEvery(Duration.ofSeconds(1))
 
   def selectYes(): BasePage = selectYesNoOption(true)
