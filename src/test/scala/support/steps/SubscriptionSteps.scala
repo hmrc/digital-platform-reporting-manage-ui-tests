@@ -42,6 +42,13 @@ object SubscriptionSteps extends PageObject {
     loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
   }
 
+  def newlySubscribedOrganisationWithDprsId(): String = {
+    val enrolmentsData = subscribedOrganisationEnrolment()
+    loginPage.show()
+    loginPage.loginAs(anOrganisationUser.copy(enrolmentsData = enrolmentsData))
+    enrolmentsData.identifierValue
+  }
+
   private def subscribedIndividualEnrolment(): EnrolmentsData = {
     val dprsId = SubscriptionRepository.insert(
       Subscription(

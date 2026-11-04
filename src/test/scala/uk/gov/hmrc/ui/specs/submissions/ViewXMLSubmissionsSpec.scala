@@ -19,8 +19,11 @@ package uk.gov.hmrc.ui.specs.submissions
 import support.SubmissionBaseSpec
 import support.pages.submissions._
 import support.pages.{IndexPage, ResultPage}
+import support.repositories.XmlSubmissionRepository
 import support.steps.{PlatformOperatorSteps, ReportingNotificationSteps, SubscriptionSteps}
 import support.utils.FileUtils.fileToUploadFrom
+
+import java.util.UUID
 
 class ViewXMLSubmissionsSpec extends SubmissionBaseSpec {
 
@@ -53,6 +56,23 @@ class ViewXMLSubmissionsSpec extends SubmissionBaseSpec {
       Then("The result page should be 'XML submissions'")
       resultPage.url       should include("/submission/view")
       resultPage.heading shouldBe "XML submissions"
+    }
+
+    Scenario("A failed submission without a platform operator ID can be opened from submission history") {
+      Given("A subscribed user has a failed submission without a platform operator ID")
+      val dprsId         = SubscriptionSteps.newlySubscribedOrganisationWithDprsId()
+      val operatorId     = PlatformOperatorSteps.addPlatformOperator("Platform Operator One")
+      val conversationId = UUID.randomUUID().toString
+      XmlSubmissionRepository.insertRejectedSubmissionWithoutOperatorId(dprsId, operatorId, conversationId)
+      ReportingNotificationSteps.addReportingNotificationFor(operatorId)
+
+      When("View XML submissions is opened and the user checks the errors")
+      indexPage.clickViewXmlSubmissions()
+      ViewXMLSubmissionsPage(conversationId).clickCheckErrors()
+
+      Then("The errors page is opened using the conversation ID")
+      resultPage.url       should endWith(s"/submission/$conversationId/file-errors")
+      resultPage.heading shouldBe "There is a problem with your file"
     }
   }
 }
